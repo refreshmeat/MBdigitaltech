@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import "./navigation.css";
 import "./home-extra.css";
+import "./legal.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
@@ -42,17 +43,10 @@ export const metadata: Metadata = {
     description:
       "Sites, sistemas, SaaS, automações, integrações e soluções com inteligência artificial sob medida.",
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: { index: true, follow: true },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-BR">
       <body>{children}</body>
