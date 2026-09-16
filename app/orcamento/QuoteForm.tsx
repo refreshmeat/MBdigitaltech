@@ -13,7 +13,10 @@ type FormState = {
   budget: string;
   deadline: string;
   description: string;
+  website: string;
 };
+
+type Status = "idle" | "sending" | "success" | "error" | "not-configured";
 
 const initialState: FormState = {
   name: "",
@@ -25,6 +28,7 @@ const initialState: FormState = {
   budget: "",
   deadline: "",
   description: "",
+  website: "",
 };
 
 const projectLabels: Record<string, string> = {
@@ -66,10 +70,12 @@ export default function QuoteForm() {
   const [form, setForm] = useState<FormState>(initialState);
   const [copied, setCopied] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<Status>("idle");
 
   const update = (field: keyof FormState, value: string) => {
     setForm((current) => ({ ...current, [field]: value }));
     setSubmitted(false);
+    if (status !== "idle") setStatus("idle");
   };
 
   const briefing = useMemo(() => {
@@ -101,18 +107,36 @@ export default function QuoteForm() {
       form.description.trim().length >= 20,
   );
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSubmitted(true);
 
     if (!requiredComplete) return;
 
-    const subject = encodeURIComponent(
-      `Novo projeto — ${projectLabels[form.projectType] || "MB Digital Tech"}`,
-    );
-    const body = encodeURIComponent(briefing);
+    setStatus("sending");
 
-    window.location.href = `mailto:contato@mbdigitaltech.com.br?subject=${subject}&body=${body}`;
+    try {
+      const response = await fetch("/api/orcamento", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = await response.json().catch(() => ({}));
+
+      if (response.ok) {
+        setStatus("success");
+        return;
+      }
+
+      if (response.status === 503 && data.code === "not_configured") {
+        setStatus("not-configured");
+        return;
+      }
+
+      setStatus("error");
+    } catch {
+      setStatus("error");
+    }
   };
 
   const copyBriefing = async () => {
@@ -278,6 +302,16 @@ export default function QuoteForm() {
             />
             <small>{form.description.trim().length}/20 caracteres mínimos</small>
           </label>
+
+          <label style={{ position: "absolute", left: "-10000px", width: 1, height: 1, overflow: "hidden" }} aria-hidden="true">
+            Website
+            <input
+              value={form.website}
+              onChange={(event) => update("website", event.target.value)}
+              tabIndex={-1}
+              autoComplete="off"
+            />
+          </label>
         </div>
       </div>
 
@@ -287,19 +321,35 @@ export default function QuoteForm() {
         </div>
       )}
 
+      {status === "success" && (
+        <div className={styles.validation} role="status">
+          Briefing enviado. Agora o projeto já chega organizado para análise.
+        </div>
+      )}
+      {status === "error" && (
+        <div className={styles.validation} role="alert">
+          Não foi possível enviar agora. Você ainda pode copiar o briefing e guardar o conteúdo.
+        </div>
+      )}
+      {status === "not-configured" && (
+        <div className={styles.validation} role="alert">
+          O envio online ainda não foi configurado no ambiente. Copie o briefing para não perder as informações.
+        </div>
+      )}
+
       <div className={styles.submitArea}>
         <div>
           <strong>Seu briefing fica pronto antes do primeiro contato.</strong>
           <p>
-            O envio por e-mail é provisório até definirmos o canal comercial oficial. Você também pode copiar o briefing completo.
+            Em produção, o formulário envia o briefing diretamente para a MB Digital Tech. A cópia continua disponível como segurança.
           </p>
         </div>
         <div className={styles.submitActions}>
           <button className={styles.copyButton} type="button" onClick={copyBriefing}>
             {copied ? "Briefing copiado" : "Copiar briefing"}
           </button>
-          <button className={styles.submitButton} type="submit">
-            Preparar e-mail <span>↗</span>
+          <button className={styles.submitButton} type="submit" disabled={status === "sending"}>
+            {status === "sending" ? "Enviando..." : "Enviar briefing"} <span>↗</span>
           </button>
         </div>
       </div>
