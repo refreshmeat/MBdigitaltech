@@ -1,0 +1,1 @@
+A identidade visual aprovada da MB Digital Tech deve ser integrada sem redesenhar, engrossar tipografia ou alterar proporções. O arquivo-fonte aprovado está preservado no material do projeto e deve substituir o monograma provisório assim que o asset binário for publicado no repositório.
