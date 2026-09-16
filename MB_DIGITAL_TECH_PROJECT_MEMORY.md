@@ -182,3 +182,64 @@ Sempre que uma decisão relevante for tomada, este documento deve ser atualizado
 Quando houver mudança de ideia, não apagar contexto importante sem necessidade. Registrar a decisão atual e, quando fizer sentido, o motivo da mudança.
 
 Este arquivo deve funcionar como fonte principal de contexto para continuar o projeto em conversas futuras ou em outras ferramentas de desenvolvimento.
+
+## 9. Implementação inicial — 16/09/2026
+
+O desenvolvimento do site foi iniciado na branch `main`.
+
+### Stack inicial
+
+- **Next.js 16** com App Router;
+- **React 19**;
+- **TypeScript**;
+- CSS próprio, sem framework visual neste primeiro momento, para manter controle total sobre a identidade;
+- ESLint configurado.
+
+A escolha mantém o projeto preparado para evoluir depois para autenticação, banco de dados, painel de cliente, APIs e outras funcionalidades sem precisar refazer a base.
+
+### Primeira versão da Home
+
+Foi criada uma primeira versão visual com:
+
+- header fixo;
+- identidade provisória em texto/monograma enquanto a logo final ainda será integrada;
+- hero principal com proposta de valor;
+- visual tecnológico em fundo branco;
+- grid sutil, gradientes discretos e microdetalhes inspirados em interfaces técnicas;
+- seção de tecnologias/capacidades;
+- seção de serviços;
+- área de projetos/cases preparada sem inventar cases ou resultados;
+- seção sobre a origem da MB Digital Tech a partir da Baumgarten Informática;
+- processo de trabalho em quatro etapas;
+- área de avaliações preparada sem avaliações fictícias;
+- CTA final;
+- rodapé.
+
+### Área do cliente
+
+A rota `/cliente` foi criada como uma prévia visual.
+
+Ela já apresenta a direção de produto para:
+
+- acompanhamento de status;
+- arquivos e entregas;
+- solicitações do cliente.
+
+O formulário de login está propositalmente desativado porque autenticação, banco de dados e regras de acesso ainda não foram definidos.
+
+### Decisões tomadas durante esta etapa
+
+- não publicar depoimentos falsos apenas para preencher o layout;
+- não inventar resultados ou clientes no portfólio;
+- manter a interface tecnológica sem abandonar o fundo claro escolhido;
+- construir desde o início em uma stack que possa receber funcionalidades reais depois.
+
+### Próximos pontos imediatos
+
+- integrar a logo final da MB Digital Tech;
+- revisar os textos da Home;
+- decidir quais projetos reais podem aparecer como cases;
+- definir canal oficial de contato e formulário de orçamento;
+- decidir o escopo da primeira versão funcional da área do cliente;
+- definir autenticação e banco de dados quando a área do cliente entrar em implementação real;
+- testar build, responsividade e acessibilidade antes do primeiro deploy.
