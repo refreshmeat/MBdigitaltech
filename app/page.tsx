@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { projects } from "@/lib/projects";
 
 const services = [
   {
@@ -71,6 +72,7 @@ export default function Home() {
             <a href="#projetos">Projetos</a>
             <a href="#sobre">Sobre</a>
             <a href="#processo">Como trabalhamos</a>
+            <a href="#avaliacoes">Avaliações</a>
           </nav>
 
           <details className="mobile-menu">
@@ -80,6 +82,7 @@ export default function Home() {
               <a href="#projetos">Projetos <span>↘</span></a>
               <a href="#sobre">Sobre <span>↘</span></a>
               <a href="#processo">Como trabalhamos <span>↘</span></a>
+              <a href="#avaliacoes">Avaliações <span>↘</span></a>
               <Link href="/cliente">Área do cliente <span>↗</span></Link>
               <Link className="mobile-menu-primary" href="/orcamento">
                 Solicitar orçamento <span>↗</span>
@@ -120,18 +123,9 @@ export default function Home() {
               </a>
             </div>
             <div className="hero-proof">
-              <div>
-                <strong>Web</strong>
-                <span>Produtos modernos</span>
-              </div>
-              <div>
-                <strong>IA</strong>
-                <span>Automação inteligente</span>
-              </div>
-              <div>
-                <strong>API</strong>
-                <span>Sistemas conectados</span>
-              </div>
+              <div><strong>Web</strong><span>Produtos modernos</span></div>
+              <div><strong>IA</strong><span>Automação inteligente</span></div>
+              <div><strong>API</strong><span>Sistemas conectados</span></div>
             </div>
           </div>
 
@@ -199,39 +193,35 @@ export default function Home() {
 
       <section className="section showcase-section" id="projetos">
         <div className="container">
-          <div className="section-heading">
-            <span className="section-kicker">Projetos</span>
-            <h2>Não é sobre empilhar tecnologia. É sobre fazer ela resolver alguma coisa.</h2>
-            <p className="heading-copy">
-              Esta área será alimentada com cases completos, mostrando desafio, estratégia, implementação e resultado. Nada de portfólio decorativo com três screenshots e meia dúzia de siglas.
+          <div className="section-heading split-heading">
+            <div>
+              <span className="section-kicker">Projetos reais</span>
+              <h2>Produto próprio também serve para provar como a gente pensa.</h2>
+            </div>
+            <p>
+              Os cases abaixo são produtos próprios em desenvolvimento. Mostramos apenas o que pode ser público, sem transformar portfólio em exposição de informação interna.
             </p>
           </div>
 
-          <div className="project-stage">
-            <div className="project-stage-grid" aria-hidden="true" />
-            <div className="project-copy">
-              <span className="project-label">CASE FORMAT / EM PREPARAÇÃO</span>
-              <h3>Projetos apresentados como produto, não como enfeite.</h3>
-              <p>
-                Cada case terá contexto, funcionalidades, arquitetura, tecnologias utilizadas e evolução do projeto. Os projetos reais serão adicionados após a seleção do que pode ser publicado.
-              </p>
-              <div className="project-tags">
-                <span>Problema</span><span>Solução</span><span>Stack</span><span>Resultado</span>
-              </div>
-            </div>
-            <div className="project-interface" aria-hidden="true">
-              <div className="interface-sidebar">
-                <span className="mini-logo">MB</span>
-                <i className="selected" /><i /><i /><i /><i />
-              </div>
-              <div className="interface-main">
-                <div className="interface-header"><span /><span /></div>
-                <div className="interface-title" />
-                <div className="interface-subtitle" />
-                <div className="interface-cards"><span /><span /><span /></div>
-                <div className="interface-chart"><i /><i /><i /><i /><i /><i /><i /></div>
-              </div>
-            </div>
+          <div className="home-cases">
+            {projects.map((project) => (
+              <article className="home-case" key={project.id}>
+                <div className="home-case-top">
+                  <span>{project.category}</span>
+                  <small>{project.status}</small>
+                </div>
+                <h3>{project.name}</h3>
+                <p>{project.summary}</p>
+                <div className="home-case-tags">
+                  {project.stack.slice(0, 5).map((item) => <span key={item}>{item}</span>)}
+                </div>
+                <Link href={`/projetos#${project.id}`}>Ver case completo <span>↗</span></Link>
+              </article>
+            ))}
+          </div>
+
+          <div className="section-link-row">
+            <Link className="button button-secondary" href="/projetos">Ver página de projetos ↗</Link>
           </div>
         </div>
       </section>
@@ -253,7 +243,7 @@ export default function Home() {
               A MB Digital Tech nasce da evolução de uma atuação já ligada à tecnologia. A experiência com hardware, software e suporte abre espaço para uma nova frente: desenvolvimento de produtos digitais, automações e soluções personalizadas.
             </p>
             <p>
-              O objetivo agora é simples de explicar e trabalhoso de executar: entender problemas reais e transformar tecnologia em algo que funcione de verdade para quem precisa usar.
+              O objetivo é entender problemas reais e transformar tecnologia em algo que funcione de verdade para quem precisa usar.
             </p>
           </div>
         </div>
@@ -280,15 +270,18 @@ export default function Home() {
       <section className="section reviews-section" id="avaliacoes">
         <div className="container reviews-grid">
           <div>
-            <span className="section-kicker">Avaliações</span>
-            <h2>Feedback de cliente tem que ser real. Então aqui não tem depoimento inventado.</h2>
+            <span className="section-kicker">Avaliações verificadas</span>
+            <h2>Feedback bom é feedback de quem realmente trabalhou com a gente.</h2>
+            <div className="review-actions">
+              <Link className="button button-primary" href="/avaliar">Deixar uma avaliação ↗</Link>
+            </div>
           </div>
           <div className="review-placeholder">
             <div className="review-stars">☆ ☆ ☆ ☆ ☆</div>
             <p>
-              A estrutura de avaliações será conectada à área do cliente para permitir depoimentos verificados e publicação controlada.
+              Clientes podem enviar avaliações pelo próprio site. Antes de qualquer depoimento ser publicado, o projeto e o contato são verificados.
             </p>
-            <span>Funcionalidade planejada</span>
+            <span>Publicação moderada</span>
           </div>
         </div>
       </section>
@@ -299,18 +292,13 @@ export default function Home() {
           <div className="cta-content">
             <span className="section-kicker light">Seu próximo projeto</span>
             <h2>Tem uma ideia, um processo ruim ou um sistema que deveria existir?</h2>
-            <p>
-              A gente começa entendendo o problema. Depois decide o que precisa ser construído.
-            </p>
+            <p>A gente começa entendendo o problema. Depois decide o que precisa ser construído.</p>
             <div className="cta-actions">
               <Link className="button button-light" href="/orcamento">
                 Montar briefing do projeto <span>↗</span>
               </Link>
-              <Link className="button button-outline-light" href="/cliente">
-                Já sou cliente
-              </Link>
+              <Link className="button button-outline-light" href="/cliente">Já sou cliente</Link>
             </div>
-            <small className="contact-note">O canal comercial definitivo ainda será definido antes da publicação.</small>
           </div>
         </div>
       </section>
@@ -326,13 +314,15 @@ export default function Home() {
           </div>
           <div className="footer-links">
             <a href="#solucoes">Soluções</a>
-            <a href="#projetos">Projetos</a>
-            <a href="#sobre">Sobre</a>
+            <Link href="/projetos">Projetos</Link>
+            <Link href="/avaliar">Avaliar</Link>
             <Link href="/orcamento">Solicitar orçamento</Link>
           </div>
           <div className="footer-meta">
             <span>© 2026 MB Digital Tech</span>
             <span>Rio de Janeiro · Brasil</span>
+            <Link href="/privacidade">Privacidade</Link>
+            <Link href="/termos">Termos</Link>
           </div>
         </div>
       </footer>
