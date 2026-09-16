@@ -1,0 +1,126 @@
+.home-cases {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.home-case {
+  position: relative;
+  min-height: 360px;
+  padding: 30px;
+  overflow: hidden;
+  border: 1px solid #dce5ee;
+  border-radius: 22px;
+  background: linear-gradient(160deg, #ffffff, #f7fbff);
+  box-shadow: 0 24px 70px rgba(20, 52, 87, .08);
+}
+
+.home-case::after {
+  content: "";
+  position: absolute;
+  width: 240px;
+  height: 240px;
+  right: -110px;
+  bottom: -120px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,167,214,.16), transparent 70%);
+}
+
+.home-case-top {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: start;
+}
+
+.home-case-top > span {
+  color: #0a5bd8;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.home-case-top small {
+  max-width: 190px;
+  color: #8090a3;
+  text-align: right;
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+.home-case h3 {
+  position: relative;
+  z-index: 1;
+  margin: 54px 0 14px;
+  font: 700 36px/1 "Space Grotesk", sans-serif;
+  letter-spacing: -.04em;
+}
+
+.home-case > p {
+  position: relative;
+  z-index: 1;
+  max-width: 560px;
+  color: #66758a;
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.home-case-tags {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 22px 0;
+}
+
+.home-case-tags span {
+  padding: 7px 9px;
+  border-radius: 999px;
+  background: #eef6ff;
+  color: #0a5eb4;
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.home-case > a {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+  color: #0b4f9d;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.section-link-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.review-actions { margin-top: 26px; }
+
+.footer-meta a {
+  color: #6f7e90;
+  transition: color .2s ease;
+}
+.footer-meta a:hover { color: #0a5bd8; }
+
+@media (max-width: 800px) {
+  .home-cases { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .home-case { min-height: 320px; padding: 24px 20px; }
+  .home-case h3 { margin-top: 38px; font-size: 31px; }
+  .home-case-top { display: grid; }
+  .home-case-top small { text-align: left; }
+  .section-link-row { justify-content: stretch; }
+  .section-link-row .button { width: 100%; }
+}
