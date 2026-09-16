@@ -73,6 +73,20 @@ export default function Home() {
             <a href="#processo">Como trabalhamos</a>
           </nav>
 
+          <details className="mobile-menu">
+            <summary>Menu</summary>
+            <nav className="mobile-menu-panel" aria-label="Navegação mobile">
+              <a href="#solucoes">Soluções <span>↘</span></a>
+              <a href="#projetos">Projetos <span>↘</span></a>
+              <a href="#sobre">Sobre <span>↘</span></a>
+              <a href="#processo">Como trabalhamos <span>↘</span></a>
+              <Link href="/cliente">Área do cliente <span>↗</span></Link>
+              <Link className="mobile-menu-primary" href="/orcamento">
+                Solicitar orçamento <span>↗</span>
+              </Link>
+            </nav>
+          </details>
+
           <Link className="header-login" href="/cliente">
             Área do cliente <span>↗</span>
           </Link>
