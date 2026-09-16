@@ -127,6 +127,36 @@ Possibilidades a explorar futuramente:
 
 Nada disso está fechado ainda. A existência da área do cliente está decidida, mas seu escopo será definido depois.
 
+### Solicitação de orçamento / briefing
+
+Foi criada a rota `/orcamento` para transformar o primeiro contato em um briefing organizado em vez de depender apenas de uma mensagem solta.
+
+O fluxo inicial coleta:
+
+- nome;
+- empresa;
+- e-mail;
+- WhatsApp opcional;
+- tipo de projeto;
+- estágio atual do projeto;
+- faixa de investimento;
+- prazo desejado;
+- descrição do problema/projeto.
+
+Tipos de projeto previstos no formulário:
+
+- site / landing page;
+- sistema sob medida;
+- SaaS;
+- automação;
+- bot / chatbot;
+- solução com IA;
+- API / integração;
+- evolução de projeto existente;
+- outro.
+
+O formulário gera um briefing estruturado. Enquanto o canal comercial oficial não estiver definido, ele pode preparar um e-mail e também permite copiar o briefing. O e-mail `contato@mbdigitaltech.com.br` continua sendo apenas provisório e não deve ser tratado como canal oficial sem confirmação.
+
 ## 6. Experiência desejada
 
 O site não deve parecer apenas um cartão de visitas.
@@ -149,20 +179,17 @@ Clientes existentes devem futuramente conseguir acessar informações específic
 Ainda precisamos decidir:
 
 - arquitetura completa do site;
-- mapa de páginas;
-- menu principal;
+- mapa final de páginas;
 - slogan definitivo;
-- texto principal da home;
+- texto principal final da Home;
 - identidade visual completa;
-- paleta de cores;
-- tipografia;
-- estilo das animações;
-- layout da home;
-- funcionamento da área do cliente;
+- paleta de cores definitiva;
+- tipografia definitiva;
+- estilo final das animações;
+- funcionamento definitivo da área do cliente;
 - funcionamento das avaliações;
-- formulário de orçamento;
+- canal comercial oficial e destino real do formulário de orçamento;
 - se haverá blog ou conteúdo técnico;
-- tecnologias que serão usadas no desenvolvimento;
 - hospedagem;
 - banco de dados;
 - autenticação;
@@ -227,19 +254,41 @@ Ela já apresenta a direção de produto para:
 
 O formulário de login está propositalmente desativado porque autenticação, banco de dados e regras de acesso ainda não foram definidos.
 
+### Fluxo de orçamento
+
+A rota `/orcamento` foi implementada como o primeiro fluxo interativo real do site.
+
+Ela contém:
+
+- briefing guiado em etapas;
+- validação dos campos essenciais;
+- seleção do tipo e estágio do projeto;
+- contexto de orçamento e prazo;
+- geração automática de briefing em texto;
+- opção de copiar o briefing;
+- preparação de e-mail com assunto e corpo preenchidos;
+- layout responsivo próprio.
+
+A Home passou a direcionar seus principais CTAs para este fluxo, em vez de depender diretamente de um `mailto:` solto.
+
 ### Decisões tomadas durante esta etapa
 
 - não publicar depoimentos falsos apenas para preencher o layout;
 - não inventar resultados ou clientes no portfólio;
 - manter a interface tecnológica sem abandonar o fundo claro escolhido;
-- construir desde o início em uma stack que possa receber funcionalidades reais depois.
+- construir desde o início em uma stack que possa receber funcionalidades reais depois;
+- transformar a solicitação de orçamento em um briefing estruturado;
+- manter valores de orçamento no formulário apenas como faixas de contexto, sem criar uma tabela pública de preços de desenvolvimento;
+- manter o envio final provisório até a definição do canal comercial real.
 
 ### Próximos pontos imediatos
 
-- integrar a logo final da MB Digital Tech;
+- integrar a logo final da MB Digital Tech sem alterar a identidade aprovada;
+- revisar e testar build/lint da nova rota de orçamento;
+- melhorar a navegação mobile;
 - revisar os textos da Home;
 - decidir quais projetos reais podem aparecer como cases;
-- definir canal oficial de contato e formulário de orçamento;
+- definir canal oficial de contato;
 - decidir o escopo da primeira versão funcional da área do cliente;
 - definir autenticação e banco de dados quando a área do cliente entrar em implementação real;
-- testar build, responsividade e acessibilidade antes do primeiro deploy.
+- testar responsividade e acessibilidade antes do primeiro deploy.
