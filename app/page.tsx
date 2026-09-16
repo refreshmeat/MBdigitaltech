@@ -142,12 +142,12 @@ export default function Home() {
               <span className="live-label">LIVE</span>
             </div>
             <div className="visual-code">
-              <span className="code-comment">// transformando necessidade em produto</span>
-              <p><span className="code-key">const</span> project = <span className="code-string">"sua ideia"</span>;</p>
+              <span className="code-comment">{"// transformando necessidade em produto"}</span>
+              <p><span className="code-key">const</span> project = <span className="code-string">&quot;sua ideia&quot;</span>;</p>
               <p><span className="code-key">await</span> mb.<span className="code-method">understand</span>(project);</p>
               <p><span className="code-key">await</span> mb.<span className="code-method">architect</span>();</p>
               <p><span className="code-key">await</span> mb.<span className="code-method">build</span>();</p>
-              <p><span className="code-key">return</span> <span className="code-string">"produto real"</span>;</p>
+              <p><span className="code-key">return</span> <span className="code-string">&quot;produto real&quot;</span>;</p>
             </div>
             <div className="visual-flow">
               <div className="flow-card active"><small>INPUT</small><strong>Problema</strong></div>
