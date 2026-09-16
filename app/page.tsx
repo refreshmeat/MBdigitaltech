@@ -98,9 +98,9 @@ export default function Home() {
               Criamos produtos digitais sob medida, de uma ideia inicial a sistemas completos. Sem soluções genéricas para problemas que não são genéricos.
             </p>
             <div className="hero-actions">
-              <a className="button button-primary" href="#contato">
+              <Link className="button button-primary" href="/orcamento">
                 Tirar um projeto do papel <span>↗</span>
-              </a>
+              </Link>
               <a className="button button-secondary" href="#solucoes">
                 Ver o que fazemos
               </a>
@@ -289,14 +289,14 @@ export default function Home() {
               A gente começa entendendo o problema. Depois decide o que precisa ser construído.
             </p>
             <div className="cta-actions">
-              <a className="button button-light" href="mailto:contato@mbdigitaltech.com.br">
-                Falar sobre um projeto <span>↗</span>
-              </a>
+              <Link className="button button-light" href="/orcamento">
+                Montar briefing do projeto <span>↗</span>
+              </Link>
               <Link className="button button-outline-light" href="/cliente">
                 Já sou cliente
               </Link>
             </div>
-            <small className="contact-note">E-mail provisório no layout. O canal oficial será definido antes da publicação.</small>
+            <small className="contact-note">O canal comercial definitivo ainda será definido antes da publicação.</small>
           </div>
         </div>
       </section>
@@ -314,7 +314,7 @@ export default function Home() {
             <a href="#solucoes">Soluções</a>
             <a href="#projetos">Projetos</a>
             <a href="#sobre">Sobre</a>
-            <a href="#processo">Processo</a>
+            <Link href="/orcamento">Solicitar orçamento</Link>
           </div>
           <div className="footer-meta">
             <span>© 2026 MB Digital Tech</span>
