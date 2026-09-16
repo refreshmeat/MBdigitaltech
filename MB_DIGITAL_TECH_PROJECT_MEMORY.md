@@ -284,11 +284,58 @@ A Home passou a direcionar seus principais CTAs para este fluxo, em vez de depen
 ### Próximos pontos imediatos
 
 - integrar a logo final da MB Digital Tech sem alterar a identidade aprovada;
-- revisar e testar build/lint da nova rota de orçamento;
-- melhorar a navegação mobile;
 - revisar os textos da Home;
 - decidir quais projetos reais podem aparecer como cases;
 - definir canal oficial de contato;
 - decidir o escopo da primeira versão funcional da área do cliente;
 - definir autenticação e banco de dados quando a área do cliente entrar em implementação real;
 - testar responsividade e acessibilidade antes do primeiro deploy.
+
+## 10. Consolidação técnica do primeiro ciclo — 16/09/2026
+
+Após a implementação inicial, foi feita uma primeira rodada de endurecimento técnico do projeto.
+
+### Navegação e experiência
+
+- criada navegação mobile própria para a Home;
+- a navegação mobile inclui acesso a Soluções, Projetos, Sobre, Como trabalhamos, Área do cliente e Solicitar orçamento;
+- o CTA principal da Home e o CTA final direcionam para `/orcamento`;
+- o rodapé também passou a oferecer acesso ao fluxo de orçamento.
+
+### SEO básico
+
+O metadata global foi ampliado com:
+
+- título padrão e template de títulos;
+- descrição;
+- palavras-chave coerentes com os serviços;
+- configuração inicial de indexação e rastreamento.
+
+O sitemap e configurações dependentes do domínio final continuam pendentes até a definição do domínio e do deploy.
+
+### CI e validação
+
+Foi criado o workflow `.github/workflows/ci.yml` para executar automaticamente em alterações na `main` e pull requests:
+
+- instalação de dependências;
+- `npm run lint`;
+- `npm run build`.
+
+A primeira execução revelou erros reais de lint no componente visual de código da Home. Esses erros foram corrigidos e a execução posterior do CI passou com sucesso, incluindo lint e build de produção.
+
+### Dependências
+
+Durante a validação, a versão inicial do Next.js gerou alerta de segurança. O projeto foi atualizado de Next.js 16.0.1 para uma versão corrigida mais recente da linha 16, junto com `eslint-config-next` compatível.
+
+Estado ao final deste ciclo:
+
+- Home funcional e responsiva;
+- `/orcamento` funcional no frontend;
+- `/cliente` como prévia visual;
+- navegação mobile implementada;
+- metadata básico configurado;
+- CI ativo;
+- lint e build validados com sucesso na `main`;
+- memória e README atualizados.
+
+A integração da logo final permanece pendente porque ela deve usar exatamente o arquivo aprovado pela usuária, sem redesenhar, engrossar a tipografia ou reinterpretar a arte.
