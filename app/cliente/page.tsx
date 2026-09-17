@@ -26,7 +26,7 @@ export default function ClientePage() {
           <span className={styles.kicker}>Portal do cliente</span>
           <h1>Seu projeto, organizado em um só lugar.</h1>
           <p>
-            A área do cliente será o ponto de acompanhamento de projetos da MB Digital Tech: etapas, arquivos, solicitações, entregas e histórico.
+            Esta é a prévia do portal privado da MB Digital Tech. Ele será ativado quando a primeira versão autenticada entrar no escopo operacional da empresa.
           </p>
 
           <div className={styles.features}>
@@ -39,27 +39,15 @@ export default function ClientePage() {
         <div className={styles.card}>
           <div className={styles.cardHeader}>
             <div>
-              <span>Acesso seguro</span>
-              <h2>Entrar</h2>
+              <span>Portal do cliente</span>
+              <h2>Em preparação</h2>
             </div>
-            <span className={styles.status}>EM CONSTRUÇÃO</span>
+            <span className={styles.status}>PRÓXIMA FASE</span>
           </div>
 
-          <form className={styles.form}>
-            <label>
-              E-mail
-              <input type="email" placeholder="voce@empresa.com" disabled />
-            </label>
-            <label>
-              Senha
-              <input type="password" placeholder="••••••••" disabled />
-            </label>
-            <button type="button" disabled>Entrar na área do cliente</button>
-          </form>
-
-          <p className={styles.note}>
-            A interface já está prevista no produto. Autenticação, banco de dados e permissões serão implementados quando definirmos o escopo final desta área.
-          </p>
+          <div className={styles.note}>
+            Não exibimos um login falso só para parecer que a área já está ativa. Quando autenticação, banco de dados e permissões entrarem em produção, este espaço passa a ser o acesso real dos clientes.
+          </div>
         </div>
       </section>
 
