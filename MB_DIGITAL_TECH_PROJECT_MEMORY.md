@@ -8,6 +8,8 @@ Este documento é a memória viva do projeto **MB Digital Tech**. Ele deve ser a
 - Origem: evolução da atuação da **Baumgarten Informática**, que é mais associada a hardware, manutenção e suporte técnico.
 - A MB Digital Tech será a frente focada em desenvolvimento e soluções digitais.
 - Posicionamento desejado: empresa capaz de desenvolver soluções sob medida, indo muito além de sites simples.
+- Logo aprovada: versão com monograma MB em azul/ciano, circuitos no M, texto `MB DIGITAL TECH` com `DIGITAL TECH` propositalmente mais fino e slogan `AUTOMATE • INNOVATE • BUILD TOMORROW`.
+- Regra: não redesenhar, engrossar ou reinterpretar a logo aprovada. Alterações futuras devem partir do arquivo aprovado pelo usuário.
 
 ## 2. Serviços e escopo da empresa
 
@@ -18,13 +20,13 @@ A MB Digital Tech deve transmitir capacidade para desenvolver projetos como:
 - sistemas web;
 - plataformas personalizadas;
 - SaaS;
-- bots;
-- chatbots;
+- bots e chatbots;
 - automações;
 - integrações entre sistemas;
 - APIs;
 - soluções com inteligência artificial;
 - ferramentas internas para empresas;
+- evolução e recuperação de projetos existentes;
 - outros projetos de software sob medida.
 
 A comunicação da empresa não deve limitar a marca a uma única tecnologia ou tipo de projeto.
@@ -33,309 +35,117 @@ A comunicação da empresa não deve limitar a marca a uma única tecnologia ou 
 
 O site deve funcionar como a principal vitrine comercial da MB Digital Tech, reduzindo a dependência de plataformas como Workana.
 
-O visitante deve entrar no site e perceber rapidamente que:
-
-- a empresa entende de tecnologia;
-- consegue desenvolver projetos modernos e personalizados;
-- possui capacidade técnica ampla;
-- trabalha com soluções completas;
-- é profissional e confiável;
-- está preparada para atender desde projetos menores até sistemas mais complexos.
+O visitante deve perceber rapidamente que a empresa entende de tecnologia, consegue desenvolver projetos modernos e personalizados, possui capacidade técnica ampla, trabalha com soluções completas e é profissional e confiável.
 
 ## 4. Direção visual
 
-Decisões já tomadas:
-
-- visual **muito tecnológico**;
+- visual muito tecnológico;
 - aparência moderna, sofisticada e profissional;
-- preferência por **fundo branco**;
-- evitar visual excessivamente carregado;
-- usar elementos tecnológicos sutis para dar personalidade;
-- o site deve parecer atual e premium, sem cair naquele clichê de site tech cheio de neon piscando como painel de nave espacial de filme ruim.
+- fundo branco como base;
+- elementos tecnológicos sutis;
+- evitar excesso de neon, poluição visual e aparência genérica de template;
+- grid suave, gradientes discretos, microinterações e detalhes inspirados na logo;
+- prioridade para legibilidade, responsividade e sensação premium.
 
-Ideias que podem ser exploradas:
+## 5. Estrutura implementada
 
-- linhas finas;
-- circuitos discretos;
-- grids suaves;
-- partículas leves;
-- animações de entrada;
-- microinterações;
-- gradientes sutis;
-- elementos geométricos;
-- detalhes inspirados na identidade visual da logo.
+### Home
 
-Ainda não está definido quais desses elementos serão usados.
-
-## 5. Estrutura e áreas desejadas
-
-Algumas áreas já foram mencionadas como desejáveis:
-
-### Página inicial
-
-Deve apresentar a empresa, proposta de valor, serviços e acesso rápido aos principais conteúdos.
-
-### Projetos / portfólio
-
-Área para mostrar projetos já desenvolvidos ou em desenvolvimento.
-
-O objetivo não é apenas listar tecnologias, mas mostrar:
-
-- qual problema existia;
-- qual solução foi desenvolvida;
-- quais recursos foram implementados;
-- quais tecnologias foram utilizadas;
-- qual foi o resultado ou objetivo do projeto.
-
-### Avaliações de clientes
-
-Deve existir uma área onde clientes possam deixar avaliações sobre o trabalho realizado.
-
-Ainda precisa ser decidido:
-
-- se qualquer usuário poderá enviar uma avaliação;
-- se somente clientes autenticados poderão avaliar;
-- se avaliações passarão por aprovação antes de aparecer no site;
-- se haverá nota por estrelas;
-- se haverá resposta da empresa à avaliação.
-
-### História / origem da empresa
-
-Deve existir uma área explicando a origem da MB Digital Tech e sua relação com a Baumgarten Informática.
-
-A ideia é contar a evolução da empresa de uma forma profissional, sem transformar a página em uma autobiografia interminável que ninguém pediu.
-
-### Área do cliente
-
-Foi decidido que o site deve ter uma **área privada para clientes**.
-
-Possibilidades a explorar futuramente:
-
-- login de cliente;
-- acompanhamento de projeto;
-- status do desenvolvimento;
-- arquivos do projeto;
-- documentos;
-- contratos;
-- propostas;
-- faturas ou pagamentos;
-- mensagens;
-- solicitação de alterações;
-- histórico do projeto;
-- entregas;
-- suporte.
-
-Nada disso está fechado ainda. A existência da área do cliente está decidida, mas seu escopo será definido depois.
-
-### Solicitação de orçamento / briefing
-
-Foi criada a rota `/orcamento` para transformar o primeiro contato em um briefing organizado em vez de depender apenas de uma mensagem solta.
-
-O fluxo inicial coleta:
-
-- nome;
-- empresa;
-- e-mail;
-- WhatsApp opcional;
-- tipo de projeto;
-- estágio atual do projeto;
-- faixa de investimento;
-- prazo desejado;
-- descrição do problema/projeto.
-
-Tipos de projeto previstos no formulário:
-
-- site / landing page;
-- sistema sob medida;
-- SaaS;
-- automação;
-- bot / chatbot;
-- solução com IA;
-- API / integração;
-- evolução de projeto existente;
-- outro.
-
-O formulário gera um briefing estruturado. Enquanto o canal comercial oficial não estiver definido, ele pode preparar um e-mail e também permite copiar o briefing. O e-mail `contato@mbdigitaltech.com.br` continua sendo apenas provisório e não deve ser tratado como canal oficial sem confirmação.
-
-## 6. Experiência desejada
-
-O site não deve parecer apenas um cartão de visitas.
-
-A intenção é criar uma experiência que transmita capacidade técnica real e que possa evoluir para uma plataforma mais completa de relacionamento com clientes.
-
-O visitante deve conseguir entender facilmente:
-
-- o que a MB Digital Tech faz;
-- que tipos de projeto desenvolve;
-- como trabalha;
-- quais projetos já realizou;
-- como entrar em contato;
-- como solicitar orçamento.
-
-Clientes existentes devem futuramente conseguir acessar informações específicas de seus próprios projetos.
-
-## 7. Pontos ainda em aberto
-
-Ainda precisamos decidir:
-
-- arquitetura completa do site;
-- mapa final de páginas;
-- slogan definitivo;
-- texto principal final da Home;
-- identidade visual completa;
-- paleta de cores definitiva;
-- tipografia definitiva;
-- estilo final das animações;
-- funcionamento definitivo da área do cliente;
-- funcionamento das avaliações;
-- canal comercial oficial e destino real do formulário de orçamento;
-- se haverá blog ou conteúdo técnico;
-- hospedagem;
-- banco de dados;
-- autenticação;
-- painel administrativo;
-- integrações externas;
-- estratégia de SEO;
-- analytics;
-- deploy;
-- política de privacidade e termos.
-
-## 8. Regra para evolução do projeto
-
-Nenhuma decisão importante deve ficar apenas perdida em conversa.
-
-Sempre que uma decisão relevante for tomada, este documento deve ser atualizado para refletir o estado atual do projeto.
-
-Quando houver mudança de ideia, não apagar contexto importante sem necessidade. Registrar a decisão atual e, quando fizer sentido, o motivo da mudança.
-
-Este arquivo deve funcionar como fonte principal de contexto para continuar o projeto em conversas futuras ou em outras ferramentas de desenvolvimento.
-
-## 9. Implementação inicial — 16/09/2026
-
-O desenvolvimento do site foi iniciado na branch `main`.
-
-### Stack inicial
-
-- **Next.js 16** com App Router;
-- **React 19**;
-- **TypeScript**;
-- CSS próprio, sem framework visual neste primeiro momento, para manter controle total sobre a identidade;
-- ESLint configurado.
-
-A escolha mantém o projeto preparado para evoluir depois para autenticação, banco de dados, painel de cliente, APIs e outras funcionalidades sem precisar refazer a base.
-
-### Primeira versão da Home
-
-Foi criada uma primeira versão visual com:
+A Home possui:
 
 - header fixo;
-- identidade provisória em texto/monograma enquanto a logo final ainda será integrada;
-- hero principal com proposta de valor;
-- visual tecnológico em fundo branco;
-- grid sutil, gradientes discretos e microdetalhes inspirados em interfaces técnicas;
-- seção de tecnologias/capacidades;
+- hero principal;
+- proposta de valor;
+- animações e elementos técnicos leves;
+- faixa de tecnologias;
 - seção de serviços;
-- área de projetos/cases preparada sem inventar cases ou resultados;
-- seção sobre a origem da MB Digital Tech a partir da Baumgarten Informática;
-- processo de trabalho em quatro etapas;
-- área de avaliações preparada sem avaliações fictícias;
-- CTA final;
-- rodapé.
+- seção de projetos reais;
+- origem da empresa;
+- processo de trabalho;
+- área de avaliações;
+- CTA de orçamento;
+- rodapé com links legais.
+
+### Projetos
+
+Existe uma página `/projetos` com cases públicos de produtos próprios, incluindo **Ergen** e **ClinicFlow**. Os textos foram escritos para mostrar problema, solução, escopo e stack sem expor informações internas sensíveis.
+
+### Orçamento
+
+Existe uma rota `/orcamento` com briefing guiado.
+
+O formulário coleta nome, empresa, e-mail, WhatsApp opcional, tipo de projeto, estágio atual, faixa de investimento, prazo e descrição. O envio real é feito por API em `/api/orcamento` usando **Resend** quando as variáveis de ambiente estão configuradas.
+
+O endpoint possui validação, limites de tamanho e honeypot antispam.
+
+### Avaliações
+
+Existe uma rota `/avaliar` e API `/api/avaliacoes`.
+
+Clientes podem enviar avaliação com nota, projeto, contato e depoimento. A publicação não é automática: a proposta é verificar o vínculo com um projeto real antes de publicar. Isso evita depoimentos falsos ou spam.
 
 ### Área do cliente
 
-A rota `/cliente` foi criada como uma prévia visual.
+A rota `/cliente` existe como prévia visual do futuro portal privado.
 
-Ela já apresenta a direção de produto para:
+A interface prevê acompanhamento de status, arquivos, entregas e solicitações. Autenticação, banco de dados, permissões e dados reais ainda não foram ativados porque dependem da definição do escopo final dessa área.
 
-- acompanhamento de status;
-- arquivos e entregas;
-- solicitações do cliente.
+### Jurídico e SEO
 
-O formulário de login está propositalmente desativado porque autenticação, banco de dados e regras de acesso ainda não foram definidos.
+Foram adicionados:
 
-### Fluxo de orçamento
+- `/privacidade`;
+- `/termos`;
+- página 404 customizada;
+- `sitemap.ts`;
+- `robots.ts`;
+- metadata global;
+- Open Graph básico;
+- configuração de URL pública por `NEXT_PUBLIC_SITE_URL`.
 
-A rota `/orcamento` foi implementada como o primeiro fluxo interativo real do site.
+## 6. Stack atual
 
-Ela contém:
+- Next.js 16;
+- React 19;
+- TypeScript;
+- CSS próprio;
+- ESLint;
+- APIs Route Handler do Next.js;
+- Resend para envio transacional;
+- GitHub Actions para lint + build.
 
-- briefing guiado em etapas;
-- validação dos campos essenciais;
-- seleção do tipo e estágio do projeto;
-- contexto de orçamento e prazo;
-- geração automática de briefing em texto;
-- opção de copiar o briefing;
-- preparação de e-mail com assunto e corpo preenchidos;
-- layout responsivo próprio.
+## 7. Estado de qualidade
 
-A Home passou a direcionar seus principais CTAs para este fluxo, em vez de depender diretamente de um `mailto:` solto.
+O repositório possui workflow de CI em `.github/workflows/ci.yml`.
 
-### Decisões tomadas durante esta etapa
+O fluxo valida instalação, lint e build. Os últimos ciclos relevantes passaram com sucesso antes da integração final da logo. A integração da logo deve ser validada pelo mesmo CI antes do primeiro deploy público.
 
-- não publicar depoimentos falsos apenas para preencher o layout;
-- não inventar resultados ou clientes no portfólio;
-- manter a interface tecnológica sem abandonar o fundo claro escolhido;
-- construir desde o início em uma stack que possa receber funcionalidades reais depois;
-- transformar a solicitação de orçamento em um briefing estruturado;
-- manter valores de orçamento no formulário apenas como faixas de contexto, sem criar uma tabela pública de preços de desenvolvimento;
-- manter o envio final provisório até a definição do canal comercial real.
+## 8. Configuração de produção
 
-### Próximos pontos imediatos
+Arquivo `.env.example` define:
 
-- integrar a logo final da MB Digital Tech sem alterar a identidade aprovada;
-- revisar os textos da Home;
-- decidir quais projetos reais podem aparecer como cases;
-- definir canal oficial de contato;
-- decidir o escopo da primeira versão funcional da área do cliente;
-- definir autenticação e banco de dados quando a área do cliente entrar em implementação real;
-- testar responsividade e acessibilidade antes do primeiro deploy.
+- `NEXT_PUBLIC_SITE_URL`;
+- `RESEND_API_KEY`;
+- `RESEND_FROM`;
+- `CONTACT_EMAIL`.
 
-## 10. Consolidação técnica do primeiro ciclo — 16/09/2026
+Para publicação real, será necessário definir domínio, hospedagem e credenciais do serviço de e-mail. Isso não deve ser inventado no código.
 
-Após a implementação inicial, foi feita uma primeira rodada de endurecimento técnico do projeto.
+## 9. Decisões importantes
 
-### Navegação e experiência
+- não publicar depoimentos falsos;
+- não inventar clientes, resultados ou métricas;
+- usar projetos próprios reais no portfólio;
+- manter fundo claro e linguagem tecnológica;
+- separar o site comercial da futura área autenticada;
+- manter o briefing de orçamento estruturado;
+- não expor segredos, documentos internos ou dados privados dos produtos;
+- toda decisão relevante deve ser registrada neste arquivo.
 
-- criada navegação mobile própria para a Home;
-- a navegação mobile inclui acesso a Soluções, Projetos, Sobre, Como trabalhamos, Área do cliente e Solicitar orçamento;
-- o CTA principal da Home e o CTA final direcionam para `/orcamento`;
-- o rodapé também passou a oferecer acesso ao fluxo de orçamento.
+## 10. Estado atual — 17/09/2026
 
-### SEO básico
+A V1 comercial está estruturalmente pronta em código para revisão visual e publicação.
 
-O metadata global foi ampliado com:
+Já estão implementados: Home, portfólio, briefing de orçamento, backend de contato, avaliações moderadas, páginas legais, SEO básico, responsividade, página 404, CI e a integração da logo aprovada na Home.
 
-- título padrão e template de títulos;
-- descrição;
-- palavras-chave coerentes com os serviços;
-- configuração inicial de indexação e rastreamento.
-
-O sitemap e configurações dependentes do domínio final continuam pendentes até a definição do domínio e do deploy.
-
-### CI e validação
-
-Foi criado o workflow `.github/workflows/ci.yml` para executar automaticamente em alterações na `main` e pull requests:
-
-- instalação de dependências;
-- `npm run lint`;
-- `npm run build`.
-
-A primeira execução revelou erros reais de lint no componente visual de código da Home. Esses erros foram corrigidos e a execução posterior do CI passou com sucesso, incluindo lint e build de produção.
-
-### Dependências
-
-Durante a validação, a versão inicial do Next.js gerou alerta de segurança. O projeto foi atualizado de Next.js 16.0.1 para uma versão corrigida mais recente da linha 16, junto com `eslint-config-next` compatível.
-
-Estado ao final deste ciclo:
-
-- Home funcional e responsiva;
-- `/orcamento` funcional no frontend;
-- `/cliente` como prévia visual;
-- navegação mobile implementada;
-- metadata básico configurado;
-- CI ativo;
-- lint e build validados com sucesso na `main`;
-- memória e README atualizados.
-
-A integração da logo final permanece pendente porque ela deve usar exatamente o arquivo aprovado pela usuária, sem redesenhar, engrossar a tipografia ou reinterpretar a arte.
+Antes de considerar o site publicamente lançado, faltam apenas ações externas de operação: escolher/configurar hospedagem, apontar o domínio, cadastrar as variáveis de ambiente de produção e validar o endereço remetente no Resend. A área do cliente permanece propositalmente como módulo futuro, não como uma falsa autenticação de demonstração.
