@@ -1,6 +1,6 @@
 # MB Digital Tech
 
-Site institucional e futura plataforma de relacionamento com clientes da **MB Digital Tech**.
+Site institucional e comercial da MB Digital Tech.
 
 ## Stack
 
@@ -8,42 +8,52 @@ Site institucional e futura plataforma de relacionamento com clientes da **MB Di
 - React 19
 - TypeScript
 - CSS próprio
+- Route Handlers do Next.js
+- Resend para envio transacional
 - GitHub Actions para lint e build
 
-## Rodando localmente
+## Desenvolvimento local
 
 ```bash
 npm install
 npm run dev
 ```
 
-Abra `http://localhost:3000`.
+A aplicação abre em `http://localhost:3000`.
 
-Para validar produção:
+## Variáveis de ambiente
 
-```bash
-npm run lint
-npm run build
-npm run start
-```
+Copie `.env.example` para `.env.local` e preencha:
 
-## Estrutura atual
+- `NEXT_PUBLIC_SITE_URL`
+- `RESEND_API_KEY`
+- `RESEND_FROM`
+- `CONTACT_EMAIL`
 
-- `/` — site institucional
-- `/orcamento` — briefing interativo para novos projetos
-- `/cliente` — prévia da futura área privada do cliente
-- `MB_DIGITAL_TECH_PROJECT_MEMORY.md` — memória viva e fonte de contexto do projeto
+Sem essas variáveis, o site continua carregando, mas os endpoints de orçamento e avaliações retornam que o envio não está configurado.
 
-## Fluxo atual de orçamento
+## Rotas principais
 
-O visitante pode estruturar um briefing com contato, tipo de projeto, estágio atual, faixa de investimento, prazo e descrição. O site gera um texto organizado, permite copiá-lo e prepara um e-mail provisório.
+- `/` — Home
+- `/projetos` — portfólio/cases
+- `/orcamento` — briefing comercial
+- `/avaliar` — envio de avaliações
+- `/cliente` — prévia da futura área do cliente
+- `/privacidade` — política de privacidade
+- `/termos` — termos de uso
 
-O canal comercial definitivo ainda não foi definido.
+## Qualidade
 
-## Estado
+O workflow `.github/workflows/ci.yml` executa instalação, lint e build em cada push.
 
-Versão inicial em desenvolvimento. Autenticação, banco de dados, avaliações persistentes, cases reais, painel administrativo e integrações comerciais ainda não foram implementados.
+## Produção
 
-A branch `main` possui CI para validar `npm run lint` e `npm run build` a cada alteração.
+Antes do deploy público:
 
-Antes de alterar decisões estruturais, consulte e atualize `MB_DIGITAL_TECH_PROJECT_MEMORY.md`.
+1. definir o domínio final;
+2. configurar `NEXT_PUBLIC_SITE_URL`;
+3. validar o domínio remetente no Resend;
+4. preencher `RESEND_API_KEY`, `RESEND_FROM` e `CONTACT_EMAIL` no ambiente de produção;
+5. publicar em uma hospedagem compatível com Next.js.
+
+A logo oficial aprovada está em `public/mb-digital-tech-logo.png` e deve ser preservada sem redesenho.
