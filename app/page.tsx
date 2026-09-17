@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { projects } from "@/lib/projects";
 
@@ -59,12 +60,8 @@ export default function Home() {
     <main>
       <header className="site-header">
         <div className="container header-inner">
-          <a href="#top" className="brand" aria-label="MB Digital Tech - início">
-            <span className="brand-mark">MB</span>
-            <span className="brand-copy">
-              <strong>MB</strong>
-              <span>DIGITAL TECH</span>
-            </span>
+          <a href="#top" className="brand brand-logo" aria-label="MB Digital Tech - início">
+            <Image src="/mb-digital-tech-logo.png" alt="MB Digital Tech" width={210} height={92} priority />
           </a>
 
           <nav className="desktop-nav" aria-label="Navegação principal">
@@ -306,9 +303,8 @@ export default function Home() {
       <footer className="footer">
         <div className="container footer-grid">
           <div>
-            <a href="#top" className="brand footer-brand">
-              <span className="brand-mark">MB</span>
-              <span className="brand-copy"><strong>MB</strong><span>DIGITAL TECH</span></span>
+            <a href="#top" className="brand brand-logo footer-brand" aria-label="MB Digital Tech - início">
+              <Image src="/mb-digital-tech-logo.png" alt="MB Digital Tech" width={220} height={96} />
             </a>
             <p>Software, automação e soluções digitais sob medida.</p>
           </div>
