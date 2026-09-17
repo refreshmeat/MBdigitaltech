@@ -1,1 +1,5 @@
-A identidade visual aprovada da MB Digital Tech deve ser integrada sem redesenhar, engrossar tipografia ou alterar proporções. O arquivo-fonte aprovado está preservado no material do projeto e deve substituir o monograma provisório assim que o asset binário for publicado no repositório.
+A identidade visual oficial da MB Digital Tech usa o arquivo `public/mb-digital-tech-logo.png`.
+
+A marca aprovada não deve ser redesenhada nem reinterpretada. Em especial, o texto `DIGITAL TECH` permanece propositalmente mais fino do que o monograma e o restante da composição.
+
+Origem: arquivo aprovado pelo usuário em 16/09/2026.
