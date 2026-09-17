@@ -41,7 +41,7 @@ export default function OrcamentoPage() {
           <span>O que acontece depois</span>
           <strong>Briefing → análise → conversa → proposta</strong>
           <p>
-            O formulário ainda usa e-mail como canal provisório. Depois ele será conectado ao fluxo comercial definitivo da MB Digital Tech.
+            Depois do envio, a equipe recebe o briefing estruturado e retorna pelo contato informado para alinhar escopo e proposta.
           </p>
         </aside>
       </section>
