@@ -2,7 +2,8 @@ import Link from "next/link";
 
 export const metadata = {
   title: "Termos de Uso",
-  description: "Termos de uso do site da MB Digital Tech.",
+  description: "Consulte os Termos de Uso da MB Digital Tech, incluindo informações sobre orçamento, contatos, responsabilidades e funcionamento do site.",
+  alternates: { canonical: "/termos" },
 };
 
 export default function TermosPage() {
@@ -47,7 +48,7 @@ export default function TermosPage() {
             Funcionalidades podem ser alteradas, suspensas ou aprimoradas durante a evolução do produto, especialmente recursos ainda identificados como em implantação.
           </p>
 
-          <p className="legal-updated">Última atualização: 16 de setembro de 2026.</p>
+          <p className="legal-updated">Última atualização: 14 de outubro de 2026.</p>
         </article>
       </div>
     </main>

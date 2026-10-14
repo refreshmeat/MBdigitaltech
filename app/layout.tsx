@@ -5,6 +5,7 @@ import "./home-extra.css";
 import "./legal.css";
 import "./audit-polish.css";
 import "./conversion.css";
+import "./servicos/servicos.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
@@ -14,7 +15,8 @@ const serviceSchema = {
   "@id": `${siteUrl}/#organizacao`,
   name: "MB Digital Tech",
   url: siteUrl,
-  description: "Equipe de profissionais para criação de sites, aplicativos, sistemas, design e automações.",
+  description: "Equipe de profissionais para sites, aplicativos, sistemas sob medida, automações, design e SEO para pessoas físicas e empresas.",
+  logo: `${siteUrl}/mb-digital-tech-logo.png`,
   contactPoint: {
     "@type": "ContactPoint",
     telephone: "+55-21-98577-3165",
@@ -32,7 +34,7 @@ export const metadata: Metadata = {
     template: "%s | MB Digital Tech",
   },
   description:
-    "Equipe de profissionais para criar sites, aplicativos, sistemas, design e automações para você ou seu negócio. Peça um orçamento pelo WhatsApp.",
+    "Precisa de um site, loja virtual, landing page, aplicativo, sistema, automação ou design? Atendimento para pessoas e negócios. Peça orçamento por WhatsApp.",
   keywords: [
     "desenvolvimento de software",
     "sites para empresas",

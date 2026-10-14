@@ -1,0 +1,65 @@
+/* Páginas de serviço: leitura rápida, contato evidente, sem distrações */
+.seo-page{background:#f7fafd;min-height:100vh;color:#15304b;font-family:Inter,Arial,sans-serif}
+.seo-page .container{width:min(1120px,calc(100% - 36px));margin:0 auto}
+.seo-header{position:sticky;top:0;z-index:35;background:rgba(255,255,255,.97);border-bottom:1px solid #dce6ee;backdrop-filter:blur(15px)}
+.seo-header-inner{min-height:75px;display:flex;align-items:center;gap:28px;justify-content:space-between}
+.seo-header .seo-logo{height:54px;width:auto;object-fit:contain}
+.seo-header nav{display:flex;gap:25px;align-items:center;margin-left:auto}
+.seo-header nav a{font-size:13px;font-weight:700;color:#465f78}
+.seo-header nav a:hover,.seo-header nav [aria-current=page]{color:#0871c6}
+.seo-nav-cta{background:#0762c4;color:white;border-radius:11px;padding:13px 16px;font-weight:800;font-size:12px;white-space:nowrap}
+.seo-nav-cta:hover{background:#044b9a}
+.seo-hero{background:radial-gradient(ellipse at 85% 10%,rgba(12,141,208,.14),transparent 50%),linear-gradient(160deg,#fff,#f0f7fc);border-bottom:1px solid #e1ecf4;padding:75px 0 80px}
+.seo-detail-hero{padding:28px 0 69px}
+.seo-hero-content{max-width:850px}
+.seo-eyebrow,.seo-section-title>span{color:#0766b5;letter-spacing:.085em;text-transform:uppercase;font-size:11px;font-weight:800}
+.seo-hero h1{font-family:"Space Grotesk",Inter,Arial,sans-serif;font-size:clamp(37px,5.1vw,65px);line-height:1.1;letter-spacing:-.045em;margin:18px 0 22px;color:#092842}
+.seo-hero h1 span{color:#0970c4}
+.seo-hero p{font-size:clamp(15px,1.4vw,17px);line-height:1.78;color:#51687e;max-width:780px}
+.seo-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:27px}
+.seo-button{min-height:49px;display:inline-flex;align-items:center;justify-content:center;text-align:center;border-radius:11px;padding:13px 20px;font-size:14px;font-weight:800;line-height:1.4}
+.seo-button-primary{background:linear-gradient(125deg,#0b3e7d,#0878d7);color:#fff;box-shadow:0 13px 28px rgba(12,104,192,.18)}
+.seo-button-outline{background:#fff;color:#15476c;border:1px solid #c6d8e8}
+.seo-button:hover{filter:brightness(.97);transform:translateY(-1px)}
+.seo-breadcrumb{display:flex;align-items:center;flex-wrap:wrap;gap:9px;margin:0 0 46px;font-size:12px;color:#5f7488}
+.seo-breadcrumb a{color:#0b68b6;font-weight:700}.seo-breadcrumb a:hover{text-decoration:underline}
+.seo-note{font-size:12px!important;margin:15px 0 0!important;color:#718397!important}
+.seo-sections{padding:40px 0 74px}.seo-group,.seo-detail-block{padding:37px 0 40px}
+.seo-section-title{margin-bottom:23px}.seo-section-title h2{font-family:"Space Grotesk",Inter,sans-serif;font-size:clamp(27px,3vw,38px);letter-spacing:-.035em;line-height:1.17;margin:11px 0 0;color:#112d4a}
+.seo-section-title p{color:#61758a;line-height:1.7;max-width:720px;font-size:14px}
+.seo-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.seo-service-card{background:#fff;border:1px solid #dce8f1;border-radius:16px;padding:24px;display:flex;flex-direction:column;min-height:208px;box-shadow:0 13px 32px rgba(9,53,93,.035)}
+.seo-service-card h3{margin:0 0 12px;font-size:19px;line-height:1.26;color:#123957}
+.seo-service-card h3 a:hover{color:#0777c9}
+.seo-service-card p{color:#5d7083;font-size:13px;line-height:1.65;margin:0 0 21px}
+.seo-text-link{color:#066ebd;font-weight:800;font-size:12px;margin-top:auto}.seo-text-link:hover{text-decoration:underline}
+.seo-need-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.seo-need{display:flex;align-items:start;gap:13px;padding:19px 20px;background:#fff;border:1px solid #dde8f1;border-radius:14px}
+.seo-need>span{color:#077cc4;font-weight:900}.seo-need p{margin:0;font-size:14px;line-height:1.55;font-weight:600}
+.seo-deliverables{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.seo-deliverables>div{display:flex;gap:18px;border-bottom:1px solid #dce6ef;padding:18px 5px}
+.seo-deliverables span{color:#0982c4;font-size:12px;font-weight:800}
+.seo-deliverables p{font-size:14px;color:#40576d;line-height:1.58;margin:0}
+.seo-info-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));background:#e9f3fc;border:1px solid #d1e6f7;border-radius:17px;gap:20px;padding:29px;margin:35px 0}
+.seo-info-strip>div{min-width:0}.seo-info-strip span{display:block;font-size:11px;color:#0876c9;font-weight:800;margin-bottom:9px}
+.seo-info-strip strong{font-size:15px;color:#163754}.seo-info-strip p{font-size:12px;line-height:1.6;color:#61768b;margin-bottom:0}
+.seo-faq details{background:#fff;border:1px solid #dce8f0;border-radius:12px;margin-top:10px;overflow:hidden}
+.seo-faq summary{cursor:pointer;list-style:none;padding:19px 20px;font-size:14px;font-weight:800}
+.seo-faq summary::-webkit-details-marker{display:none}.seo-faq summary::after{content:"+";float:right;color:#0b71c3;font-size:19px}
+.seo-faq details[open] summary::after{content:"−"}
+.seo-faq details p{padding:0 20px 19px;color:#596e81;font-size:14px;line-height:1.7;margin:0}
+.seo-last-cta{background:linear-gradient(125deg,#0b294a,#075e99);padding:42px;border-radius:23px;color:#fff;margin:40px 0 0}
+.seo-last-cta h2{margin:0;font-size:clamp(25px,2.8vw,36px);line-height:1.18}
+.seo-last-cta p{max-width:670px;color:#d1e4f4;font-size:14px;line-height:1.65;margin:16px 0 25px}
+.seo-last-cta .seo-button{background:#fff;color:#11548d}
+.seo-footer{border-top:1px solid #e3ebf2;padding:30px 0;background:#fff}
+.seo-footer>.container{display:flex;align-items:center;gap:20px;flex-wrap:wrap;justify-content:space-between;font-size:12px;color:#687e92}
+.seo-footer a{font-weight:700;color:#105e9c}.seo-footer a:hover{text-decoration:underline}
+@media(max-width:850px){.seo-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.seo-header nav{gap:13px}.seo-header .seo-logo{height:43px}}
+@media(max-width:650px){.seo-header-inner{gap:10px;min-height:66px}.seo-header nav{display:none}.seo-header .seo-logo{height:42px}.seo-nav-cta{padding:11px 12px;font-size:11px}.seo-hero{padding:52px 0 55px}.seo-detail-hero{padding:20px 0 49px}.seo-hero h1{font-size:39px}.seo-hero p{font-size:14px}.seo-breadcrumb{margin-bottom:30px}.seo-actions{flex-direction:column}.seo-button{width:100%}.seo-sections{padding-top:14px}.seo-grid,.seo-need-grid,.seo-deliverables,.seo-info-strip{grid-template-columns:1fr}.seo-group,.seo-detail-block{padding:28px 0}.seo-service-card{min-height:175px;padding:19px}.seo-section-title h2{font-size:28px}.seo-info-strip{padding:23px;gap:18px}.seo-last-cta{padding:27px 21px}.seo-footer>.container{align-items:start;flex-direction:column;gap:13px}}
+@media(prefers-reduced-motion:reduce){.seo-page *{scroll-behavior:auto!important;transition:none!important}}
+
+.service-card .service-detail-link{margin-top:15px;display:inline-flex;align-items:center;gap:7px;color:#1c507c;font-size:12px;font-weight:750;}
+.service-card .service-detail-link:hover{text-decoration:underline;}
+.services-action .inline-action{margin-left:12px;}
+@media(max-width:640px){.services-action .inline-action{margin-left:0;display:inline-flex;margin-right:15px;margin-top:8px;}}

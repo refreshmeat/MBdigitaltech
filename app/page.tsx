@@ -47,6 +47,15 @@ const services = [
   },
 ];
 
+const detailLinks: Record<string, string> = {
+  "Sites e lojas online": "criacao-de-sites",
+  "Aplicativos e sistemas": "desenvolvimento-de-aplicativos",
+  "Automações e IA": "automacao-de-processos",
+  "Design e UI/UX": "design-ui-ux",
+  "APIs e integrações": "integracao-de-sistemas",
+  "Melhorias e correções": "manutencao-de-sites",
+};
+
 const steps = [
   ["01", "Conte o que você precisa", "Pode ser pelo WhatsApp, mesmo que a ideia ainda não esteja totalmente definida."],
   ["02", "Planejamos e orçamos", "Conversamos sobre o escopo, a abordagem, os valores e os próximos passos."],
@@ -65,7 +74,7 @@ export default function Home() {
             <Image src="/mb-digital-tech-logo.png" alt="MB Digital Tech" width={499} height={98} priority />
           </Link>
           <nav className="desktop-nav" aria-label="Menu principal">
-            <a href="#solucoes">Serviços</a>
+            <Link href="/servicos">Serviços</Link>
             <a href="#equipe">Nossa equipe</a>
             <a href="#processo">Como funciona</a>
             <Link href="/orcamento">Orçamento</Link>
@@ -152,6 +161,7 @@ export default function Home() {
                   <span className="service-number">{service.number}</span>
                   <h3>{service.title}</h3>
                   <p>{service.text}</p>
+                  <Link href={`/servicos/${detailLinks[service.title]}`} className="service-detail-link">Entender este serviço ↗</Link>
                   <WhatsAppLink source="services" message={service.message} className="service-link" label={`Pedir orçamento para ${service.title}`}>
                     Pedir orçamento <span aria-hidden="true">↗</span>
                   </WhatsAppLink>
@@ -161,6 +171,7 @@ export default function Home() {
             <div className="services-action">
               <p>Não encontrou exatamente o que precisa? Conte sua ideia.</p>
               <WhatsAppLink source="services" className="inline-action">Falar com nossa equipe ↗</WhatsAppLink>
+              <Link href="/servicos" className="inline-action">Ver todos os serviços ↗</Link>
             </div>
           </div>
         </section>
@@ -265,7 +276,7 @@ export default function Home() {
             <p>Soluções digitais para pessoas e negócios. Atendimento online em todo o Brasil.</p>
           </div>
           <nav className="footer-links" aria-label="Links do rodapé">
-            <a href="#solucoes">Serviços</a>
+            <Link href="/servicos">Todos os serviços</Link>
             <a href="#equipe">Equipe</a>
             <Link href="/orcamento">Orçamento</Link>
             <WhatsAppLink source="footer">WhatsApp: (21) 98577-3165</WhatsAppLink>

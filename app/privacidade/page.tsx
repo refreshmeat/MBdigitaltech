@@ -2,7 +2,8 @@ import Link from "next/link";
 
 export const metadata = {
   title: "Política de Privacidade",
-  description: "Política de privacidade da MB Digital Tech.",
+  description: "Leia a Política de Privacidade da MB Digital Tech: como utilizamos dados enviados nos formulários, solicitações comerciais e canais de contato.",
+  alternates: { canonical: "/privacidade" },
 };
 
 export default function PrivacidadePage() {
