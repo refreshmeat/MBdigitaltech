@@ -483,3 +483,28 @@
     transition: none;
   }
 }
+
+.whatsappLink {
+  display:inline-flex;
+  align-items:center;
+  margin-top:16px;
+  color:#0a7247;
+  font-size:13px;
+  font-weight:800;
+}
+.whatsappLink:hover { text-decoration:underline; }
+.whatsappButton {
+  min-height:44px;
+  padding:0 15px;
+  border-radius:12px;
+  background:#16814b;
+  color:#fff;
+  font-size:11px;
+  font-weight:800;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+.whatsappButton:hover { background:#0c663b; }
+.choice input:focus-visible + span {outline:3px solid #1c82da;outline-offset:2px;}

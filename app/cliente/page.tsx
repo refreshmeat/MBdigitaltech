@@ -2,7 +2,8 @@ import Link from "next/link";
 import styles from "./cliente.module.css";
 
 export const metadata = {
-  title: "Área do Cliente | MB Digital Tech",
+  robots: { index: false, follow: false },
+  title: "Área do Cliente",
 };
 
 export default function ClientePage() {

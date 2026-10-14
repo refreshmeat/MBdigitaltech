@@ -3,6 +3,7 @@ import ReviewForm from "./ReviewForm";
 import styles from "./avaliar.module.css";
 
 export const metadata = {
+  robots: { index: false, follow: false },
   title: "Avaliar projeto",
   description: "Envie uma avaliação verificada sobre um projeto realizado com a MB Digital Tech.",
 };

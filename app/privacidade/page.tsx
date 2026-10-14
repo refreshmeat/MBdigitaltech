@@ -44,7 +44,7 @@ export default function PrivacidadePage() {
 
           <h2>6. Seus direitos</h2>
           <p>
-            O titular pode solicitar acesso, correção ou exclusão de dados pessoais, observadas as hipóteses legais de conservação. O canal oficial de privacidade será informado junto ao contato comercial antes do lançamento público.
+            O titular pode solicitar acesso, correção ou exclusão de dados pessoais, observadas as hipóteses legais de conservação. Para exercer seus direitos, entre em contato pelo WhatsApp (21) 98577-3165 e informe sua solicitação.
           </p>
 
           <h2>7. Atualizações</h2>
@@ -52,7 +52,7 @@ export default function PrivacidadePage() {
             Esta política pode ser atualizada quando novas funcionalidades, integrações ou formas de tratamento de dados forem adicionadas ao site.
           </p>
 
-          <p className="legal-updated">Última atualização: 16 de setembro de 2026.</p>
+          <p className="legal-updated">Última atualização: 14 de outubro de 2026.</p>
         </article>
       </div>
     </main>

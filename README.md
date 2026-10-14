@@ -57,3 +57,13 @@ Antes do deploy público:
 5. publicar em uma hospedagem compatível com Next.js.
 
 A logo oficial aprovada está em `public/mb-digital-tech-logo.png` e deve ser preservada sem redesenho.
+
+## Publicação pela Nexora (14/10/2026)
+
+- Prévia pública: https://mbdigitaltech.46-225-114-87.sslip.io/
+- Hospedagem: contêiner Next.js separado no Hetzner, gateway HTTPS Caddy e banco próprio `mb_digital_tech`, administrados pela infraestrutura Nexora.
+- Orçamentos: salvos em `public.project_briefings`, mesmo sem e-mail transacional configurado.
+- Eventos de WhatsApp: `public.contact_events`, separados por origem do CTA. O link funciona independentemente da gravação da métrica.
+- Telefone comercial: (21) 98577-3165 (`wa.me/5521985773165`).
+- Documento de auditoria, resultados e pendências: `SITE_AUDIT_REPORT_2026-10-14.md`.
+- Atenção ao deploy: o Caddyfile é montado como arquivo somente leitura. Depois de substituir o arquivo no host, é necessário recriar o serviço `gateway` do Compose para remontar o novo inode; validar o Caddyfile e preservar as rotas dos demais projetos.

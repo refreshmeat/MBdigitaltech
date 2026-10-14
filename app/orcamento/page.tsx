@@ -2,9 +2,10 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import QuoteForm from "./QuoteForm";
 import styles from "./orcamento.module.css";
+import WhatsAppLink from "../WhatsAppLink";
 
 export const metadata: Metadata = {
-  title: "Solicitar orçamento | MB Digital Tech",
+  title: "Solicitar orçamento",
   description:
     "Conte o que você quer construir e gere um briefing inicial para um projeto de software, site, automação, SaaS, bot, integração ou solução com IA.",
 };
@@ -41,8 +42,9 @@ export default function OrcamentoPage() {
           <span>O que acontece depois</span>
           <strong>Briefing → análise → conversa → proposta</strong>
           <p>
-            Depois do envio, a equipe recebe o briefing estruturado e retorna pelo contato informado para alinhar escopo e proposta.
+            Depois do envio, as informações ficam registradas para nossa análise. Para conversar mais rápido, você também pode chamar no WhatsApp.
           </p>
+          <WhatsAppLink source="quote" className={styles.whatsappLink}>Falar agora no WhatsApp ↗</WhatsAppLink>
         </aside>
       </section>
 

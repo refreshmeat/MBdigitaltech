@@ -149,3 +149,13 @@ A V1 comercial está estruturalmente pronta em código para revisão visual e pu
 Já estão implementados: Home, portfólio, briefing de orçamento, backend de contato, avaliações moderadas, páginas legais, SEO básico, responsividade, página 404, CI e a integração da logo aprovada na Home.
 
 Antes de considerar o site publicamente lançado, faltam apenas ações externas de operação: escolher/configurar hospedagem, apontar o domínio, cadastrar as variáveis de ambiente de produção e validar o endereço remetente no Resend. A área do cliente permanece propositalmente como módulo futuro, não como uma falsa autenticação de demonstração.
+
+## Atualização de 14/10/2026
+
+- Site comercial está publicado na infraestrutura Nexora/Hetzner: https://mbdigitaltech.46-225-114-87.sslip.io/
+- Banco de dados exclusivo: `mb_digital_tech`, formulário persistido e métricas de CTA WhatsApp.
+- Logo aprovada recuperada dos arquivos originais do Windows e restaurada no site; favicon e imagem social gerados a partir da identidade original.
+- Comunicação agora inclui pessoas físicas, autônomos e empresas; CTAs diretos para (21) 98577-3165.
+- Home simplificada: ~6.002 → 3.113 px no desktop e 9.328 → 4.122 px no celular (390 px).
+- QA via Playwright Chromium: sem imagens quebradas, sem erros JS, responsivo a 320/390/1440 px, rotas públicas e APIs testadas, sitemap e noindex das páginas ainda inativas revisados.
+- Auditoria técnica detalhada em `SITE_AUDIT_REPORT_2026-10-14.md`. E-mail transacional e domínio próprio continuam pendentes.

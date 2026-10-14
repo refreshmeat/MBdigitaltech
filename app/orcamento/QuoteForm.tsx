@@ -2,6 +2,7 @@
 
 import { FormEvent, useMemo, useState } from "react";
 import styles from "./orcamento.module.css";
+import WhatsAppLink from "../WhatsAppLink";
 
 type FormState = {
   name: string;
@@ -351,6 +352,13 @@ export default function QuoteForm() {
           <button className={styles.submitButton} type="submit" disabled={status === "sending"}>
             {status === "sending" ? "Enviando..." : "Enviar briefing"} <span>↗</span>
           </button>
+          <WhatsAppLink
+            source="quote"
+            className={styles.whatsappButton}
+            message={requiredComplete ? briefing : "Olá! Vim pelo site da MB Digital Tech e gostaria de conversar sobre um projeto."}
+          >
+            Conversar pelo WhatsApp ↗
+          </WhatsAppLink>
         </div>
       </div>
     </form>
