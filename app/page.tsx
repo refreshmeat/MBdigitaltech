@@ -57,9 +57,9 @@ const detailLinks: Record<string, string> = {
 };
 
 const steps = [
-  ["01", "Conte o que você precisa", "Pode ser pelo WhatsApp, mesmo que a ideia ainda não esteja totalmente definida."],
-  ["02", "Planejamos e orçamos", "Conversamos sobre o escopo, a abordagem, os valores e os próximos passos."],
-  ["03", "Criamos e acompanhamos", "Nossa equipe desenvolve, testa e orienta você na entrega."],
+  ["01", "Conte sua ideia", "Explique o que quer criar, mesmo que ainda não tenha todos os detalhes."],
+  ["02", "Veja uma prévia gratuita", "Quando o projeto permitir, preparamos um protótipo para você conhecer a proposta sem compromisso."],
+  ["03", "Gostou? Aí desenvolvemos", "Você aprova o escopo e o orçamento antes do desenvolvimento da versão final."],
 ];
 
 const capabilities = ["Sites", "Aplicativos", "Design", "Sistemas", "Automação", "Inteligência artificial"];
@@ -96,19 +96,18 @@ export default function Home() {
           <div className="container hero-inner">
             <div className="hero-copy">
               <div className="eyebrow"><span className="status-dot" aria-hidden="true" /> Sites, sistemas, design e automação</div>
-              <h1>Seu projeto digital, <span>feito para funcionar.</span></h1>
+              <h1>Sua ideia merece sair do papel. <span>Veja antes de contratar.</span></h1>
               <p>
-                Criamos sites, aplicativos, sistemas, design e automações para você,
-                seu trabalho ou seu negócio. Conte sua ideia e converse diretamente
-                com a nossa equipe de profissionais de tecnologia.
+                Criamos sites, aplicativos, sistemas e automações para transformar ideias em soluções reais.
+                Quando for viável, você vê um protótipo gratuito antes de decidir pela contratação.
               </p>
               <div className="hero-actions">
-                <WhatsAppLink source="hero" className="button button-primary" message="Olá! Gostaria de um orçamento para um projeto digital. Podemos conversar?">
-                  Pedir orçamento no WhatsApp <span aria-hidden="true">↗</span>
+                <WhatsAppLink source="hero" className="button button-primary" message="Olá! Tenho uma ideia de projeto digital e gostaria de saber se é possível receber um protótipo gratuito antes de contratar. Posso contar a minha ideia?">
+                  Tirar minha ideia do papel <span aria-hidden="true">↗</span>
                 </WhatsAppLink>
-                <a className="button button-secondary" href="#solucoes">Ver soluções</a>
+                <a className="button button-secondary" href="#processo">Como funciona</a>
               </div>
-              <p className="hero-helper">Atendimento para pessoas físicas, profissionais e empresas. Converse sem compromisso.</p>
+              <p className="hero-helper">Prévia gratuita conforme a viabilidade do projeto. Sem obrigação de contratar.</p>
             </div>
 
             <div className="hero-visual" aria-label="Ilustração de uma ideia transformada em solução digital">
@@ -237,7 +236,7 @@ export default function Home() {
             <div className="section-heading compact-heading">
               <span className="section-kicker">Simples, do começo ao fim</span>
               <h2>Como funciona?</h2>
-              <p className="heading-copy">Sem burocracia para explicar sua ideia. O projeto começa com uma conversa.</p>
+              <p className="heading-copy">Você conhece a proposta antes de decidir pela contratação.</p>
             </div>
             <div className="process-grid">
               {steps.map(([number, title, description]) => (
@@ -256,10 +255,10 @@ export default function Home() {
             <div className="cta-grid" aria-hidden="true" />
             <div className="cta-content">
               <span className="section-kicker light">Seu projeto começa aqui</span>
-              <h2>Seu próximo projeto pode começar com uma mensagem.</h2>
-              <p>Seja um site pessoal, uma loja ou um sistema para seu negócio, nossa equipe está pronta para ouvir sua ideia e discutir possibilidades.</p>
+              <h2>Tire seu projeto do papel. Sem contratar no escuro.</h2>
+              <p>Conte o que você imaginou. Quando viável, criamos uma prévia gratuita para você avaliar. Gostou? Definimos o orçamento e seguimos com o projeto.</p>
               <div className="cta-actions">
-                <WhatsAppLink source="footer" className="button button-light">Pedir orçamento pelo WhatsApp <span aria-hidden="true">↗</span></WhatsAppLink>
+                <WhatsAppLink source="footer" className="button button-light" message="Olá! Quero tirar minha ideia do papel. Posso solicitar uma prévia gratuita do projeto?">Solicitar uma prévia gratuita <span aria-hidden="true">↗</span></WhatsAppLink>
                 <Link href="/orcamento" className="button button-outline-light">Prefiro pedir orçamento pelo site</Link>
               </div>
             </div>
