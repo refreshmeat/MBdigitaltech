@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 import QuoteForm from "./QuoteForm";
 import styles from "./orcamento.module.css";
@@ -17,11 +18,7 @@ export default function OrcamentoPage() {
 
       <header className={styles.header}>
         <Link href="/" className={styles.brand} aria-label="MB Digital Tech - início">
-          <span className={styles.mark}>MB</span>
-          <span className={styles.brandText}>
-            <strong>MB</strong>
-            <small>DIGITAL TECH</small>
-          </span>
+          <Image src="/mb-digital-tech-logo.png" alt="MB Digital Tech" width={499} height={98} className={styles.logoImage} priority />
         </Link>
         <Link href="/" className={styles.back}>← Voltar ao site</Link>
       </header>

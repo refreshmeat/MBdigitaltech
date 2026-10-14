@@ -52,7 +52,7 @@ export default function Home() {
       <header className="site-header">
         <div className="container header-inner">
           <Link href="/" className="brand brand-logo" aria-label="MB Digital Tech, página inicial">
-            <Image src="/mb-digital-tech-logo.png" alt="MB Digital Tech" width={605} height={98} priority />
+            <Image src="/mb-digital-tech-logo.png" alt="MB Digital Tech" width={499} height={98} priority />
           </Link>
           <nav className="desktop-nav" aria-label="Menu principal">
             <a href="#solucoes">Soluções</a>
@@ -219,7 +219,7 @@ export default function Home() {
         <div className="container footer-grid">
           <div>
             <Link href="/" className="brand brand-logo footer-brand" aria-label="MB Digital Tech, início">
-              <Image src="/mb-digital-tech-logo.png" alt="MB Digital Tech" width={605} height={98} />
+              <Image src="/mb-digital-tech-logo.png" alt="MB Digital Tech" width={499} height={98} />
             </Link>
             <p>Soluções digitais para pessoas e negócios. Atendimento online em todo o Brasil.</p>
           </div>

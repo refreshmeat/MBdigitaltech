@@ -245,3 +245,5 @@
   .card { padding: 22px; }
   .footer { gap: 20px; }
 }
+
+.logoImage { display: block; width: 225px; max-width: 100%; height: auto; }

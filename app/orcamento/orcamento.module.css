@@ -508,3 +508,5 @@
 }
 .whatsappButton:hover { background:#0c663b; }
 .choice input:focus-visible + span {outline:3px solid #1c82da;outline-offset:2px;}
+
+.logoImage { display: block; width: 225px; max-width: 100%; height: auto; }

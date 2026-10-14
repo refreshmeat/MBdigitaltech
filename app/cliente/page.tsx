@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import styles from "./cliente.module.css";
 
 export const metadata = {
@@ -13,11 +14,7 @@ export default function ClientePage() {
 
       <header className={styles.header}>
         <Link href="/" className={styles.brand}>
-          <span className={styles.mark}>MB</span>
-          <span>
-            <strong>MB</strong>
-            <small>DIGITAL TECH</small>
-          </span>
+          <Image src="/mb-digital-tech-logo.png" alt="MB Digital Tech" width={499} height={98} className={styles.logoImage} priority />
         </Link>
         <Link href="/" className={styles.back}>← Voltar ao site</Link>
       </header>
