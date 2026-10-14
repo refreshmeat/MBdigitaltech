@@ -3,7 +3,7 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci --no-audit --no-fund
 COPY . .
-ARG NEXT_PUBLIC_SITE_URL=https://mbdigitaltech.46-225-114-87.sslip.io
+ARG NEXT_PUBLIC_SITE_URL=https://mbdigitaltech.com.br
 ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL
 RUN npm run build
 

@@ -174,3 +174,9 @@ Antes de considerar o site publicamente lançado, faltam apenas ações externas
 - **QA:** Next.js build e ESLint sem erros. Playwright testou 1440, 390 e 320 px, links WhatsApp, âncoras, imagens, menus e ausência de erros JS. Formulário validado em cenários de WhatsApp apenas e e-mail apenas com API simulada (sem criar contatos de teste no banco).
 - **Pendências comerciais:** adquirir domínio próprio, vincular Search Console e configurar alertas de novos pedidos no banco/e-mail transacional; o formulário salva os pedidos no banco, mas ainda não manda notificação por e-mail.
 - **Decisões de produto:** manter navegação simples e orientada a orçamento; não reintroduzir blog, produtos pessoais, depoimentos fictícios ou portfólio de clientes não autorizados.
+
+## Domínio próprio — 14/10/2026
+- Domínio: `mbdigitaltech.com.br`, confirmado pago no Registro.br até 13/10/2027.
+- URL canônica desejada: `https://mbdigitaltech.com.br`; `www` redireciona para raiz.
+- DNS mantido nos NS do Registro.br (a.auto.dns.br, b.auto.dns.br); exige A raiz para 46.225.114.87 e CNAME www para mbdigitaltech.com.br (ou A www se a zona não permitir CNAME).
+- Site e HTTPS hospedados no gateway Caddy/Nexora, TLS obtido automaticamente depois de DNS apontado; URL sslip.io provisória para transição.
