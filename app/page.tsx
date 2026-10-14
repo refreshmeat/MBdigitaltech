@@ -30,8 +30,8 @@ const services = [
   },
   {
     number: "06",
-    title: "Evolução de produtos",
-    text: "Entramos em projetos existentes para corrigir, modernizar, integrar e levar o software para a próxima fase.",
+    title: "UI/UX & design digital",
+    text: "Interfaces, identidade visual, protótipos e experiências digitais pensadas para as pessoas que vão usar o produto.",
   },
 ];
 
@@ -229,15 +229,15 @@ export default function Home() {
             <span className="origin-ring ring-one" />
             <span className="origin-ring ring-two" />
             <span className="origin-core">MB</span>
-            <span className="origin-node node-one">hardware</span>
+            <span className="origin-node node-one">design</span>
             <span className="origin-node node-two">software</span>
             <span className="origin-node node-three">automação</span>
           </div>
           <div className="origin-copy">
-            <span className="section-kicker">Nossa origem</span>
-            <h2>Da Baumgarten Informática para uma frente inteira dedicada a construir tecnologia.</h2>
+            <span className="section-kicker">Nossa equipe</span>
+            <h2>Design, engenharia e automação trabalhando juntos.</h2>
             <p>
-              A MB Digital Tech nasce da evolução de uma atuação já ligada à tecnologia. A experiência com hardware, software e suporte abre espaço para uma nova frente: desenvolvimento de produtos digitais, automações e soluções personalizadas.
+              Reunimos conhecimentos em front-end, back-end, UI/UX, design e automação para criar soluções sob medida. Cada projeto parte de uma necessidade real e recebe a combinação certa de especialidades.
             </p>
             <p>
               O objetivo é entender problemas reais e transformar tecnologia em algo que funcione de verdade para quem precisa usar.
@@ -306,7 +306,7 @@ export default function Home() {
             <a href="#top" className="brand brand-logo footer-brand" aria-label="MB Digital Tech - início">
               <Image src="/mb-digital-tech-logo.png" alt="MB Digital Tech" width={220} height={96} />
             </a>
-            <p>Software, automação e soluções digitais sob medida.</p>
+            <p>Sites, software, design e automação sob medida.</p>
           </div>
           <div className="footer-links">
             <a href="#solucoes">Soluções</a>

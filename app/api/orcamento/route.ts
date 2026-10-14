@@ -1,3 +1,9 @@
+import { Pool } from "pg";
+
+const leadPool = process.env.DATABASE_URL
+  ? new Pool({ connectionString: process.env.DATABASE_URL, max: 3, connectionTimeoutMillis: 8000 })
+  : null;
+
 type QuotePayload = {
   name?: string;
   company?: string;
@@ -82,12 +88,29 @@ export async function POST(request: Request) {
     return Response.json({ ok: false, error: "validation" }, { status: 400 });
   }
 
+  let saved = false;
+  if (leadPool) {
+    try {
+      await leadPool.query(
+        `INSERT INTO public.project_briefings
+         (name, company, email, whatsapp, project_type, stage, budget, deadline, description)
+         VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)`,
+        [name, company, email, whatsapp, projectType, stage, budget, deadline, description],
+      );
+      saved = true;
+    } catch (error) {
+      console.error("Falha ao registrar briefing no Nexora:", error instanceof Error ? error.message : "erro");
+    }
+  }
+
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.CONTACT_EMAIL;
   const from = process.env.RESEND_FROM;
 
   if (!apiKey || !to || !from) {
-    return Response.json({ ok: false, code: "not_configured" }, { status: 503 });
+    return saved
+      ? Response.json({ ok: true, delivery: "database" })
+      : Response.json({ ok: false, code: "not_configured" }, { status: 503 });
   }
 
   const text = [
@@ -123,7 +146,9 @@ export async function POST(request: Request) {
   });
 
   if (!response.ok) {
-    return Response.json({ ok: false, error: "delivery" }, { status: 502 });
+    return saved
+      ? Response.json({ ok: true, delivery: "database" })
+      : Response.json({ ok: false, error: "delivery" }, { status: 502 });
   }
 
   return Response.json({ ok: true });

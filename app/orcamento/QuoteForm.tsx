@@ -323,7 +323,7 @@ export default function QuoteForm() {
 
       {status === "success" && (
         <div className={styles.validation} role="status">
-          Briefing enviado. Agora o projeto já chega organizado para análise.
+          Solicitação recebida! Registramos as informações do projeto para análise.
         </div>
       )}
       {status === "error" && (
@@ -341,7 +341,7 @@ export default function QuoteForm() {
         <div>
           <strong>Seu briefing fica pronto antes do primeiro contato.</strong>
           <p>
-            Em produção, o formulário envia o briefing diretamente para a MB Digital Tech. A cópia continua disponível como segurança.
+            Ao enviar, registramos seu pedido para análise. Você também pode guardar uma cópia do briefing.
           </p>
         </div>
         <div className={styles.submitActions}>
