@@ -6,9 +6,10 @@ import styles from "./orcamento.module.css";
 import WhatsAppLink from "../WhatsAppLink";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/orcamento" },
   title: "Solicitar orçamento",
   description:
-    "Conte o que você quer construir e gere um briefing inicial para um projeto de software, site, automação, SaaS, bot, integração ou solução com IA.",
+    "Peça um orçamento para criação de sites, aplicativos, sistemas, design e automações. Atendimento para pessoas físicas e empresas pela equipe MB Digital Tech.",
 };
 
 export default function OrcamentoPage() {
@@ -27,21 +28,22 @@ export default function OrcamentoPage() {
         <div>
           <span className={styles.kicker}>Começar um projeto</span>
           <h1>
-            Conte a ideia.
-            <span>A gente organiza o problema.</span>
+            Vamos tirar sua ideia do papel.
+            <span>Peça um orçamento.</span>
           </h1>
           <p>
-            Este briefing inicial ajuda a entender o que precisa ser construído antes de falar em tecnologia, prazo ou orçamento fechado. Quanto melhor o contexto, menos tempo a gente desperdiça adivinhando requisito.
+            Preencha só o essencial. Nossa equipe analisa o que você precisa e conversa com você sobre possibilidades, escopo e valores. Atendemos pessoas físicas, profissionais e empresas.
           </p>
         </div>
 
         <aside className={styles.heroAside}>
-          <span>O que acontece depois</span>
-          <strong>Briefing → análise → conversa → proposta</strong>
-          <p>
-            Depois do envio, as informações ficam registradas para nossa análise. Para conversar mais rápido, você também pode chamar no WhatsApp.
-          </p>
-          <WhatsAppLink source="quote" className={styles.whatsappLink}>Falar agora no WhatsApp ↗</WhatsAppLink>
+          <span>Quer resolver mais rápido?</span>
+          <strong>Converse diretamente com a equipe.</strong>
+          <p>Se preferir, descreva sua ideia pelo WhatsApp. Você não precisa preencher o formulário para começar.</p>
+          <WhatsAppLink source="quote" className={styles.whatsappLink}
+            message="Olá! Gostaria de um orçamento com a MB Digital Tech. Podemos conversar?">
+            Conversar no WhatsApp ↗
+          </WhatsAppLink>
         </aside>
       </section>
 

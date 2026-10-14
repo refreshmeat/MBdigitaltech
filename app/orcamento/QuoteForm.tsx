@@ -1,8 +1,9 @@
 "use client";
 
 import { FormEvent, useMemo, useState } from "react";
-import styles from "./orcamento.module.css";
+import Link from "next/link";
 import WhatsAppLink from "../WhatsAppLink";
+import styles from "./orcamento.module.css";
 
 type FormState = {
   name: string;
@@ -17,347 +18,195 @@ type FormState = {
   website: string;
 };
 
-type Status = "idle" | "sending" | "success" | "error" | "not-configured";
-
-const initialState: FormState = {
-  name: "",
-  company: "",
-  email: "",
-  whatsapp: "",
-  projectType: "",
-  stage: "",
-  budget: "",
-  deadline: "",
-  description: "",
-  website: "",
+const initialForm: FormState = {
+  name: "", company: "", email: "", whatsapp: "", projectType: "",
+  stage: "", budget: "", deadline: "", description: "", website: "",
 };
 
-const projectLabels: Record<string, string> = {
-  site: "Site / landing page",
-  system: "Sistema sob medida",
-  saas: "Produto SaaS",
-  automation: "Automação",
-  bot: "Bot / chatbot",
-  ai: "Solução com IA",
-  integration: "API / integração",
-  evolution: "Evolução de projeto existente",
-  other: "Outro",
-};
+const projectOptions = [
+  ["site", "Site, loja ou página profissional"],
+  ["app", "Aplicativo"],
+  ["system", "Sistema ou plataforma"],
+  ["design", "Design ou UI/UX"],
+  ["automation", "Automação ou inteligência artificial"],
+  ["integration", "API ou integração"],
+  ["evolution", "Melhorar um projeto existente"],
+  ["other", "Ainda não sei / outro"],
+] as const;
 
-const stageLabels: Record<string, string> = {
-  idea: "Ainda é uma ideia",
-  scope: "Já tenho escopo ou referências",
-  existing: "Já existe algo funcionando",
-  rescue: "Existe um projeto que precisa ser corrigido ou retomado",
-};
+const optionalBudgets = [
+  ["", "Prefiro conversar primeiro"],
+  ["starter", "Até R$ 3 mil"],
+  ["medium", "R$ 3 mil a R$ 8 mil"],
+  ["advanced", "R$ 8 mil a R$ 20 mil"],
+  ["custom", "Acima de R$ 20 mil"],
+] as const;
 
-const budgetLabels: Record<string, string> = {
-  open: "Quero entender o investimento primeiro",
-  starter: "Até R$ 3 mil",
-  medium: "R$ 3 mil a R$ 8 mil",
-  advanced: "R$ 8 mil a R$ 20 mil",
-  custom: "Acima de R$ 20 mil",
-};
-
-const deadlineLabels: Record<string, string> = {
-  flexible: "Sem prazo fechado",
-  month: "Até 30 dias",
-  quarter: "1 a 3 meses",
-  long: "Mais de 3 meses",
-  urgent: "Tenho urgência",
-};
+type Status = "idle" | "sending" | "success" | "error";
 
 export default function QuoteForm() {
-  const [form, setForm] = useState<FormState>(initialState);
-  const [copied, setCopied] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [form, setForm] = useState<FormState>(initialForm);
   const [status, setStatus] = useState<Status>("idle");
+  const [submitted, setSubmitted] = useState(false);
 
-  const update = (field: keyof FormState, value: string) => {
-    setForm((current) => ({ ...current, [field]: value }));
-    setSubmitted(false);
+  const update = (key: keyof FormState, value: string) => {
+    setForm((previous) => ({ ...previous, [key]: value }));
     if (status !== "idle") setStatus("idle");
   };
 
-  const briefing = useMemo(() => {
-    const lines = [
-      "NOVO BRIEFING — MB DIGITAL TECH",
-      "",
-      `Nome: ${form.name || "Não informado"}`,
-      `Empresa: ${form.company || "Não informado"}`,
-      `E-mail: ${form.email || "Não informado"}`,
-      `WhatsApp: ${form.whatsapp || "Não informado"}`,
-      "",
-      `Tipo de projeto: ${projectLabels[form.projectType] || "Não informado"}`,
-      `Momento atual: ${stageLabels[form.stage] || "Não informado"}`,
-      `Faixa de investimento: ${budgetLabels[form.budget] || "Não informado"}`,
-      `Prazo: ${deadlineLabels[form.deadline] || "Não informado"}`,
-      "",
-      "Descrição do projeto:",
-      form.description || "Não informado",
-    ];
+  const email = form.email.trim();
+  const digits = form.whatsapp.replace(/\D/g, "");
+  const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const validWhatsApp = digits.length >= 10 && digits.length <= 13;
+  const ready =
+    form.name.trim().length >= 2 &&
+    (validEmail || validWhatsApp) &&
+    (!email || validEmail) &&
+    (!form.whatsapp.trim() || validWhatsApp) &&
+    Boolean(form.projectType) &&
+    form.description.trim().length >= 8;
 
-    return lines.join("\n");
-  }, [form]);
-
-  const requiredComplete = Boolean(
-    form.name &&
-      form.email &&
-      form.projectType &&
-      form.stage &&
-      form.description.trim().length >= 20,
-  );
+  const message = useMemo(() => {
+    const project = projectOptions.find(([code]) => code === form.projectType)?.[1] || "um projeto digital";
+    if (!ready) return "Olá! Vim pelo site da MB Digital Tech e gostaria de um orçamento. Podemos conversar?";
+    return [
+      "Olá! Gostaria de um orçamento com a MB Digital Tech.",
+      `Nome: ${form.name.trim()}`,
+      `Serviço: ${project}`,
+      `Ideia: ${form.description.trim()}`,
+      form.company.trim() ? `Empresa/projeto: ${form.company.trim()}` : "",
+      form.deadline ? `Prazo: ${form.deadline}` : "",
+    ].filter(Boolean).join("\n");
+  }, [form, ready]);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSubmitted(true);
-
-    if (!requiredComplete) return;
+    if (!ready || status === "sending") return;
 
     setStatus("sending");
-
     try {
       const response = await fetch("/api/orcamento", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
-      const data = await response.json().catch(() => ({}));
-
-      if (response.ok) {
-        setStatus("success");
-        return;
-      }
-
-      if (response.status === 503 && data.code === "not_configured") {
-        setStatus("not-configured");
-        return;
-      }
-
-      setStatus("error");
+      setStatus(response.ok ? "success" : "error");
     } catch {
       setStatus("error");
-    }
-  };
-
-  const copyBriefing = async () => {
-    if (!requiredComplete) {
-      setSubmitted(true);
-      return;
-    }
-
-    try {
-      await navigator.clipboard.writeText(briefing);
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 1800);
-    } catch {
-      setCopied(false);
     }
   };
 
   return (
     <form className={styles.form} onSubmit={handleSubmit} noValidate>
-      <div className={styles.formSection}>
-        <div className={styles.sectionNumber}>01</div>
-        <div className={styles.sectionContent}>
-          <div className={styles.sectionHeading}>
-            <span>Contato</span>
-            <h2>Primeiro, quem está por trás da ideia?</h2>
-          </div>
-
-          <div className={styles.twoColumns}>
-            <label>
-              Seu nome <b>*</b>
-              <input
-                value={form.name}
-                onChange={(event) => update("name", event.target.value)}
-                placeholder="Como podemos te chamar?"
-                autoComplete="name"
-              />
-            </label>
-            <label>
-              Empresa
-              <input
-                value={form.company}
-                onChange={(event) => update("company", event.target.value)}
-                placeholder="Nome da empresa ou projeto"
-                autoComplete="organization"
-              />
-            </label>
-            <label>
-              E-mail <b>*</b>
-              <input
-                type="email"
-                value={form.email}
-                onChange={(event) => update("email", event.target.value)}
-                placeholder="voce@empresa.com"
-                autoComplete="email"
-              />
-            </label>
-            <label>
-              WhatsApp
-              <input
-                value={form.whatsapp}
-                onChange={(event) => update("whatsapp", event.target.value)}
-                placeholder="(21) 99999-9999"
-                inputMode="tel"
-                autoComplete="tel"
-              />
-            </label>
-          </div>
-        </div>
+      <div className={styles.quickIntro}>
+        <span className={styles.quickKicker}>PEDIR ORÇAMENTO</span>
+        <h2>Conte o básico. O resto a gente conversa.</h2>
+        <p>Não precisa preencher um briefing enorme para começar. Seu pedido vai direto para análise da nossa equipe.</p>
       </div>
 
-      <div className={styles.formSection}>
-        <div className={styles.sectionNumber}>02</div>
-        <div className={styles.sectionContent}>
-          <div className={styles.sectionHeading}>
-            <span>Projeto</span>
-            <h2>O que você quer construir?</h2>
-          </div>
-
-          <div className={styles.optionGrid}>
-            {Object.entries(projectLabels).map(([value, label]) => (
-              <label className={styles.choice} key={value}>
-                <input
-                  type="radio"
-                  name="projectType"
-                  value={value}
-                  checked={form.projectType === value}
-                  onChange={(event) => update("projectType", event.target.value)}
-                />
-                <span>{label}</span>
-              </label>
-            ))}
-          </div>
+      <div className={styles.quickFields}>
+        <div className={styles.twoColumns}>
+          <label>
+            Seu nome <b>*</b>
+            <input value={form.name} onChange={(e) => update("name", e.target.value)}
+              autoComplete="name" placeholder="Como podemos te chamar?" maxLength={120} />
+          </label>
+          <label>
+            WhatsApp
+            <input value={form.whatsapp} onChange={(e) => update("whatsapp", e.target.value)}
+              autoComplete="tel" inputMode="tel" placeholder="(21) 99999-9999" maxLength={25} />
+          </label>
         </div>
-      </div>
-
-      <div className={styles.formSection}>
-        <div className={styles.sectionNumber}>03</div>
-        <div className={styles.sectionContent}>
-          <div className={styles.sectionHeading}>
-            <span>Contexto</span>
-            <h2>Em que ponto esse projeto está?</h2>
-          </div>
-
-          <div className={styles.optionGridTwo}>
-            {Object.entries(stageLabels).map(([value, label]) => (
-              <label className={styles.choice} key={value}>
-                <input
-                  type="radio"
-                  name="stage"
-                  value={value}
-                  checked={form.stage === value}
-                  onChange={(event) => update("stage", event.target.value)}
-                />
-                <span>{label}</span>
-              </label>
-            ))}
-          </div>
+        <div className={styles.emailRow}>
+          <label>
+            E-mail (opcional, se informou o WhatsApp)
+            <input type="email" value={form.email} onChange={(e) => update("email", e.target.value)}
+              autoComplete="email" placeholder="seuemail@exemplo.com" maxLength={180} />
+          </label>
+          <p>Informe pelo menos um contato: WhatsApp ou e-mail.</p>
         </div>
-      </div>
+        <label>
+          O que você precisa? <b>*</b>
+          <select value={form.projectType} onChange={(e) => update("projectType", e.target.value)}>
+            <option value="">Selecione o serviço</option>
+            {projectOptions.map(([code, title]) => <option key={code} value={code}>{title}</option>)}
+          </select>
+        </label>
+        <label>
+          Conte sua ideia em poucas palavras <b>*</b>
+          <textarea value={form.description} onChange={(e) => update("description", e.target.value)}
+            rows={4} maxLength={5000}
+            placeholder="Por exemplo: quero um site para divulgar meus serviços e receber contatos pelo WhatsApp." />
+        </label>
 
-      <div className={styles.formSection}>
-        <div className={styles.sectionNumber}>04</div>
-        <div className={styles.sectionContent}>
-          <div className={styles.sectionHeading}>
-            <span>Escopo</span>
-            <h2>Investimento, prazo e o que precisa acontecer.</h2>
-          </div>
-
-          <div className={styles.twoColumns}>
+        <details className={styles.optionalDetails}>
+          <summary>Tenho mais detalhes para contar (opcional)</summary>
+          <div className={styles.optionalGrid}>
+            <label>
+              Empresa ou nome do projeto
+              <input value={form.company} onChange={(e) => update("company", e.target.value)}
+                maxLength={160} placeholder="Se houver" />
+            </label>
+            <label>
+              Situação atual
+              <select value={form.stage} onChange={(e) => update("stage", e.target.value)}>
+                <option value="">Não informado</option>
+                <option value="idea">Ainda é uma ideia</option>
+                <option value="scope">Já tenho referências</option>
+                <option value="existing">Já existe algo funcionando</option>
+                <option value="rescue">Preciso corrigir ou retomar um projeto</option>
+              </select>
+            </label>
             <label>
               Faixa de investimento
-              <select
-                value={form.budget}
-                onChange={(event) => update("budget", event.target.value)}
-              >
-                <option value="">Selecionar</option>
-                {Object.entries(budgetLabels).map(([value, label]) => (
-                  <option value={value} key={value}>{label}</option>
-                ))}
+              <select value={form.budget} onChange={(e) => update("budget", e.target.value)}>
+                {optionalBudgets.map(([code, title]) => <option value={code} key={title}>{title}</option>)}
               </select>
             </label>
             <label>
               Prazo desejado
-              <select
-                value={form.deadline}
-                onChange={(event) => update("deadline", event.target.value)}
-              >
-                <option value="">Selecionar</option>
-                {Object.entries(deadlineLabels).map(([value, label]) => (
-                  <option value={value} key={value}>{label}</option>
-                ))}
+              <select value={form.deadline} onChange={(e) => update("deadline", e.target.value)}>
+                <option value="">Ainda não sei</option>
+                <option value="urgent">Tenho urgência</option>
+                <option value="month">Até 30 dias</option>
+                <option value="quarter">1 a 3 meses</option>
+                <option value="long">Mais de 3 meses</option>
+                <option value="flexible">Sem prazo fechado</option>
               </select>
             </label>
           </div>
-
-          <label className={styles.descriptionLabel}>
-            Conte sobre o projeto <b>*</b>
-            <textarea
-              value={form.description}
-              onChange={(event) => update("description", event.target.value)}
-              placeholder="Qual problema precisa ser resolvido? O que você imagina que o produto precisa fazer? Se já existe algo, conte o que está funcionando e o que precisa mudar."
-              rows={8}
-            />
-            <small>{form.description.trim().length}/20 caracteres mínimos</small>
-          </label>
-
-          <label style={{ position: "absolute", left: "-10000px", width: 1, height: 1, overflow: "hidden" }} aria-hidden="true">
-            Website
-            <input
-              value={form.website}
-              onChange={(event) => update("website", event.target.value)}
-              tabIndex={-1}
-              autoComplete="off"
-            />
-          </label>
-        </div>
+        </details>
+        <label className={styles.honeypot} aria-hidden="true">
+          Website <input value={form.website} onChange={(e) => update("website", e.target.value)}
+            tabIndex={-1} autoComplete="off" />
+        </label>
       </div>
 
-      {submitted && !requiredComplete && (
+      {submitted && !ready && (
         <div className={styles.validation} role="alert">
-          Preencha nome, e-mail, tipo de projeto, momento atual e uma descrição com pelo menos 20 caracteres.
+          Informe seu nome, um WhatsApp ou e-mail válido, o serviço e uma breve descrição da ideia.
         </div>
       )}
-
       {status === "success" && (
-        <div className={styles.validation} role="status">
-          Solicitação recebida! Registramos as informações do projeto para análise.
+        <div className={styles.success} role="status">
+          Recebemos seu pedido! As informações já estão registradas para nossa análise.
         </div>
       )}
       {status === "error" && (
         <div className={styles.validation} role="alert">
-          Não foi possível enviar agora. Você ainda pode copiar o briefing e guardar o conteúdo.
-        </div>
-      )}
-      {status === "not-configured" && (
-        <div className={styles.validation} role="alert">
-          O envio online ainda não foi configurado no ambiente. Copie o briefing para não perder as informações.
+          Não conseguimos registrar agora. Use o botão do WhatsApp abaixo para falar com a equipe e não perder sua solicitação.
         </div>
       )}
 
-      <div className={styles.submitArea}>
-        <div>
-          <strong>Seu briefing fica pronto antes do primeiro contato.</strong>
-          <p>
-            Ao enviar, registramos seu pedido para análise. Você também pode guardar uma cópia do briefing.
-          </p>
-        </div>
-        <div className={styles.submitActions}>
-          <button className={styles.copyButton} type="button" onClick={copyBriefing}>
-            {copied ? "Briefing copiado" : "Copiar briefing"}
+      <div className={styles.quickSubmit}>
+        <p>Seus dados serão usados apenas para responder ao pedido. Consulte a nossa <Link href="/privacidade">política de privacidade</Link>.</p>
+        <div className={styles.quickActions}>
+          <button type="submit" className={styles.submitButton} disabled={status === "sending" || status === "success"}>
+            {status === "sending" ? "Enviando..." : status === "success" ? "Pedido registrado" : "Enviar pedido de orçamento"} <span aria-hidden="true">↗</span>
           </button>
-          <button className={styles.submitButton} type="submit" disabled={status === "sending"}>
-            {status === "sending" ? "Enviando..." : "Enviar briefing"} <span>↗</span>
-          </button>
-          <WhatsAppLink
-            source="quote"
-            className={styles.whatsappButton}
-            message={requiredComplete ? briefing : "Olá! Vim pelo site da MB Digital Tech e gostaria de conversar sobre um projeto."}
-          >
-            Conversar pelo WhatsApp ↗
+          <WhatsAppLink source="quote" className={styles.whatsappButton} message={message}>
+            Prefiro conversar no WhatsApp ↗
           </WhatsAppLink>
         </div>
       </div>

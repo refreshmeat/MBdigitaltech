@@ -159,3 +159,18 @@ Antes de considerar o site publicamente lançado, faltam apenas ações externas
 - Home simplificada: ~6.002 → 3.113 px no desktop e 9.328 → 4.122 px no celular (390 px).
 - QA via Playwright Chromium: sem imagens quebradas, sem erros JS, responsivo a 320/390/1440 px, rotas públicas e APIs testadas, sitemap e noindex das páginas ainda inativas revisados.
 - Auditoria técnica detalhada em `SITE_AUDIT_REPORT_2026-10-14.md`. E-mail transacional e domínio próprio continuam pendentes.
+
+## Revisão comercial e foco em conversão — 14/10/2026
+
+- **Objetivo:** captar clientes de serviços digitais, tanto pessoas físicas e autônomos quanto empresas. Não usar o site como vitrine de produtos pessoais.
+- **Posicionamento:** MB Digital Tech atende por meio de uma equipe de profissionais de tecnologia. Não afirmar número de membros, certificações, clientes ou resultados sem provas.
+- **Marca:** logo com monograma MB + palavras DIGITAL TECH, sem MB repetido.
+- **Site público:** https://mbdigitaltech.46-225-114-87.sslip.io/, hospedado na Nexora/Hetzner em contêiner próprio.
+- **Home comercial:** serviços (sites, apps/sistemas, automações, design/UI/UX, APIs e melhorias); exemplos de necessidades do cliente, apresentados como possibilidades, não cases já entregues; equipe; etapas; CTAs.
+- **Portfólio pessoal removido:** sem referências a ERGEN, JARVIS ou Nexora na vitrine comercial; `/projetos` redireciona permanentemente para `/#solucoes`, fora do sitemap; `lib/projects.ts` removido.
+- **WhatsApp:** +55 21 98577-3165, botões com mensagens específicas para cada serviço e métricas de cliques por origem na tabela `contact_events`. Cliques não equivalem a conversas efetivamente enviadas.
+- **Orçamento:** formulário curto; nome, WhatsApp **ou** e-mail, categoria e resumo; detalhes adicionais opcionais. Backend atualizado para aceitar contato por qualquer um dos canais e gravar em `mb_digital_tech.public.project_briefings`.
+- **SEO:** metadados coerentes com serviços para pessoas e empresas, canonical da home e orçamento, sitemap limpo e dados estruturados de organização; não inventar avaliações.
+- **QA:** Next.js build e ESLint sem erros. Playwright testou 1440, 390 e 320 px, links WhatsApp, âncoras, imagens, menus e ausência de erros JS. Formulário validado em cenários de WhatsApp apenas e e-mail apenas com API simulada (sem criar contatos de teste no banco).
+- **Pendências comerciais:** adquirir domínio próprio, vincular Search Console e configurar alertas de novos pedidos no banco/e-mail transacional; o formulário salva os pedidos no banco, mas ainda não manda notificação por e-mail.
+- **Decisões de produto:** manter navegação simples e orientada a orçamento; não reintroduzir blog, produtos pessoais, depoimentos fictícios ou portfólio de clientes não autorizados.

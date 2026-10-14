@@ -1,7 +1,7 @@
 import { Pool } from "pg";
 
 const allowedSources = new Set([
-  "header", "hero", "services", "projects", "footer", "floating", "mobile", "quote",
+  "header", "hero", "services", "examples", "team", "footer", "floating", "mobile", "quote",
 ]);
 
 const pool = process.env.DATABASE_URL

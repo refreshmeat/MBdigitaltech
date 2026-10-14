@@ -510,3 +510,107 @@
 .choice input:focus-visible + span {outline:3px solid #1c82da;outline-offset:2px;}
 
 .logoImage { display: block; width: 225px; max-width: 100%; height: auto; }
+
+/* Formulário comercial compacto */
+.hero { padding: 43px 0 35px; align-items: center; }
+.hero h1 { font-size: clamp(37px, 4.8vw, 59px); }
+.hero p { font-size: 14px; }
+.heroAside { padding: 24px; }
+.form { overflow: visible; }
+.quickIntro {
+  padding: 29px 32px 19px;
+  border-bottom: 1px solid #e3eaf2;
+}
+.quickKicker {
+  display: inline-block; color: #0876bb;
+  font-weight: 800; font-size: 10px; letter-spacing: .12em;
+}
+.quickIntro h2 { margin: 10px 0 9px; font-size: clamp(24px,3vw,34px); letter-spacing: -.035em; }
+.quickIntro p { margin: 0; font-size: 13px; line-height: 1.6; color: #60758b; }
+.quickFields { padding: 27px 32px; display: grid; gap: 20px; }
+.quickFields .twoColumns { gap: 17px; }
+.emailRow { display: grid; grid-template-columns: minmax(0,1fr) .85fr; gap: 16px; align-items: end; }
+.emailRow p { font-size: 11px; color: #65788a; line-height: 1.5; margin: 0 0 5px; }
+.quickFields label { font-size: 12px; gap: 9px; }
+.quickFields textarea { min-height: 103px; resize: vertical; }
+.optionalDetails {
+  border: 1px solid #dce7f1;
+  border-radius: 14px;
+  background: #f8fbff;
+  overflow: hidden;
+}
+.optionalDetails summary {
+  cursor: pointer;
+  list-style-position: inside;
+  padding: 17px 18px;
+  color: #095aa0;
+  font-weight: 750;
+  font-size: 12px;
+}
+.optionalDetails[open] summary { border-bottom: 1px solid #dce7f1; }
+.optionalGrid {
+  padding: 19px;
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 15px;
+}
+.honeypot {
+  position: absolute!important;
+  left: -9999px!important;
+  width: 1px!important;
+  height: 1px!important;
+  overflow: hidden!important;
+}
+.success {
+  margin: 3px 28px 0;
+  border: 1px solid #b6e0c6;
+  border-radius: 12px;
+  background: #effbf4;
+  color: #165d3a;
+  padding: 14px 16px;
+  line-height: 1.5;
+  font-size: 13px;
+}
+.quickSubmit {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 27px;
+  padding: 22px 31px;
+  border-radius: 0 0 25px 25px;
+  background: linear-gradient(130deg, #0c2746, #0a4f86);
+}
+.quickSubmit p {
+  max-width: 450px;
+  color: #c8daed;
+  font-size: 11px;
+  line-height: 1.55;
+  margin: 0;
+}
+.quickSubmit p a { color: #fff; text-decoration: underline; text-underline-offset: 2px; }
+.quickActions { display: flex; flex-wrap: wrap; align-items: center; gap: 9px; }
+.quickActions a, .quickActions button { min-height: 48px; font-size: 12px; white-space: nowrap; }
+.quickActions .whatsappButton { border: 1px solid rgba(255,255,255,.4); }
+.submitButton:disabled { opacity: .6; cursor: wait; }
+
+@media (max-width: 960px) {
+ .hero { grid-template-columns: 1fr; gap: 18px; padding-top: 32px; }
+ .heroAside { max-width: none; }
+ .quickSubmit { flex-direction: column; align-items: stretch; gap: 18px; }
+ .quickActions { width: 100%; }
+}
+@media (max-width: 640px) {
+ .hero h1 { font-size: clamp(33px,8.9vw,43px); }
+ .hero { gap: 17px; padding-top: 26px; }
+ .heroAside { padding: 20px; }
+ .quickIntro { padding: 25px 19px 17px; }
+ .quickFields { padding: 22px 19px; gap: 18px; }
+ .quickFields .twoColumns, .emailRow, .optionalGrid { grid-template-columns: 1fr; }
+ .emailRow { gap: 3px; }
+ .optionalGrid { padding: 16px; }
+ .quickSubmit { padding: 22px 19px; }
+ .quickActions { display: grid; grid-template-columns: 1fr; }
+ .quickActions a,.quickActions button { width: 100%; white-space: normal; }
+ .formWrap { padding-bottom: 45px; }
+ .quickFields textarea { min-height: 105px; }
+}

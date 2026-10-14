@@ -1,0 +1,142 @@
+/* Conversão V3: serviços, exemplos de demanda e equipe */
+.service-card {
+  display: flex;
+  flex-direction: column;
+}
+.service-card .service-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 16px;
+  color: #075daa;
+  font-size: 12px;
+  font-weight: 800;
+}
+.service-card .service-link:hover {
+  color: #083b72;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.possibilities-section {
+  background: #fff;
+}
+.possibilities-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+.possibility-card {
+  min-height: 286px;
+  border: 1px solid #dce7f1;
+  border-radius: 18px;
+  background: linear-gradient(155deg, #ffffff 25%, #f5faff);
+  padding: 25px 23px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 14px 36px rgba(15, 60, 104, .045);
+}
+.possibility-label {
+  color: #0a67b4;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .1em;
+}
+.possibility-card h3 {
+  margin: 22px 0 11px;
+  color: #102c4b;
+  font-size: clamp(19px, 2vw, 23px);
+  letter-spacing: -.03em;
+  line-height: 1.22;
+}
+.possibility-card p {
+  font-size: 13px;
+  line-height: 1.65;
+  color: #596d80;
+  margin: 0 0 22px;
+}
+.possibility-card .inline-action { margin-top: auto; }
+.team-section {
+  padding: 52px 0;
+  background: #edf5fb;
+}
+.team-panel {
+  display: grid;
+  grid-template-columns: 1.12fr .88fr;
+  align-items: center;
+  gap: clamp(28px, 5vw, 80px);
+}
+.team-copy h2 {
+  max-width: 620px;
+  margin: 15px 0 16px;
+  font-size: clamp(31px, 3.8vw, 46px);
+  letter-spacing: -.04em;
+  line-height: 1.1;
+}
+.team-copy p {
+  color: #536981;
+  max-width: 620px;
+  line-height: 1.7;
+  font-size: 14px;
+  margin-bottom: 21px;
+}
+.team-skills {
+  display: grid;
+  gap: 10px;
+}
+.team-skills div {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  column-gap: 12px;
+  border-radius: 14px;
+  padding: 17px 19px;
+  background: #fff;
+  border: 1px solid #d9e8f4;
+}
+.team-skills span {
+  grid-row: 1 / span 2;
+  color: #0a79c8;
+  font-weight: 800;
+  font-size: 12px;
+}
+.team-skills strong {
+  color: #123655;
+  font-size: 14px;
+}
+.team-skills small {
+  color: #6b7d8e;
+  font-size: 11px;
+  margin-top: 6px;
+  line-height: 1.45;
+}
+#possibilidades, #equipe { scroll-margin-top: 82px; }
+
+@media (max-width: 900px) {
+  .possibilities-grid { grid-template-columns: 1fr; }
+  .possibility-card { min-height: 0; padding: 23px; }
+  .possibility-card h3 { margin-top: 15px; }
+  .team-panel { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .possibility-card { padding: 20px; }
+  .possibility-card h3 { font-size: 20px; }
+  .team-section { padding: 43px 0; }
+  .team-copy h2 { font-size: 30px; }
+  .team-copy p { font-size: 13px; }
+  .service-card .service-link { margin-top: 16px; font-size: 11px; padding-top: 8px; }
+  .service-card { min-height: 222px; }
+}
+@media (max-width: 355px) {
+  .service-card { min-height: 250px; }
+}
+
+
+/* Leitura confortável para a conversão em telas pequenas */
+@media (max-width: 640px) {
+ .service-card p { font-size: 12px; line-height: 1.58; }
+ .service-card h3 { font-size: 16px; }
+ .team-skills small { font-size: 12px; }
+ .process-step p { font-size: 13px; }
+ .possibility-card p { font-size: 13px; }
+}

@@ -3,10 +3,10 @@
 import { ReactNode } from "react";
 
 export const WHATSAPP_NUMBER = "5521985773165";
-const DEFAULT_MESSAGE = "Olá! Encontrei a MB Digital Tech pelo site e gostaria de conversar sobre um projeto.";
+const DEFAULT_MESSAGE = "Olá! Vim pelo site da MB Digital Tech e gostaria de solicitar um orçamento. Podemos conversar?";
 
 type Props = {
-  source: "header" | "hero" | "services" | "projects" | "footer" | "floating" | "mobile" | "quote";
+  source: "header" | "hero" | "services" | "examples" | "team" | "footer" | "floating" | "mobile" | "quote";
   className?: string;
   children: ReactNode;
   message?: string;

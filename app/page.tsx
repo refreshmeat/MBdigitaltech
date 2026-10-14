@@ -1,46 +1,56 @@
 import Image from "next/image";
+import type { Metadata } from "next";
 import Link from "next/link";
 import WhatsAppLink from "./WhatsAppLink";
 import MobileMenu from "./MobileMenu";
-import { projects } from "@/lib/projects";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 const services = [
   {
     number: "01",
     title: "Sites e lojas online",
-    text: "Landing pages, portfólios, páginas profissionais, sites institucionais e experiências feitas para converter.",
+    text: "Para divulgar seu trabalho, receber contatos, vender ou apresentar sua empresa com profissionalismo.",
+    message: "Olá! Gostaria de um orçamento para criar um site ou loja online.",
   },
   {
     number: "02",
     title: "Aplicativos e sistemas",
-    text: "Aplicativos web, plataformas, SaaS, painéis e sistemas personalizados para suas necessidades.",
+    text: "Soluções sob medida para organizar serviços, facilitar o atendimento ou tirar uma ideia do papel.",
+    message: "Olá! Quero conversar sobre um aplicativo ou sistema sob medida.",
   },
   {
     number: "03",
     title: "Automações e IA",
-    text: "Assistentes, bots, integrações inteligentes e rotinas que economizam tempo no dia a dia.",
+    text: "Automatize tarefas e conecte ferramentas para reduzir trabalho repetitivo.",
+    message: "Olá! Preciso automatizar uma tarefa ou integrar inteligência artificial.",
   },
   {
     number: "04",
     title: "Design e UI/UX",
-    text: "Identidade visual, interfaces, protótipos, materiais digitais e experiências fáceis de usar.",
+    text: "Interfaces, identidade visual e materiais digitais com atenção à clareza e à experiência de uso.",
+    message: "Olá! Gostaria de falar sobre design ou UI/UX.",
   },
   {
     number: "05",
     title: "APIs e integrações",
-    text: "Conexões entre ferramentas, bancos de dados, pagamentos, WhatsApp e sistemas existentes.",
+    text: "Faça seus sistemas conversarem: pagamentos, atendimento, bancos de dados e APIs.",
+    message: "Olá! Preciso de uma API ou integração entre sistemas.",
   },
   {
     number: "06",
     title: "Melhorias e correções",
-    text: "Resolvemos erros, modernizamos projetos, melhoramos desempenho e retomamos ideias paradas.",
+    text: "Seu site ou sistema já existe? Podemos investigar erros, atualizar e implementar melhorias.",
+    message: "Olá! Tenho um site ou sistema que precisa de correções ou melhorias.",
   },
 ];
 
 const steps = [
-  ["01", "Você conta a ideia", "Pode ser uma necessidade simples ou um projeto inteiro. Queremos entender o objetivo."],
-  ["02", "Alinhamos a solução", "Avaliamos possibilidades, prazo e investimento antes de iniciar."],
-  ["03", "Desenvolvemos e entregamos", "Construímos, testamos e acompanhamos a solução até funcionar."],
+  ["01", "Conte o que você precisa", "Pode ser pelo WhatsApp, mesmo que a ideia ainda não esteja totalmente definida."],
+  ["02", "Planejamos e orçamos", "Conversamos sobre o escopo, a abordagem, os valores e os próximos passos."],
+  ["03", "Criamos e acompanhamos", "Nossa equipe desenvolve, testa e orienta você na entrega."],
 ];
 
 const capabilities = ["Sites", "Aplicativos", "Design", "Sistemas", "Automação", "Inteligência artificial"];
@@ -55,8 +65,8 @@ export default function Home() {
             <Image src="/mb-digital-tech-logo.png" alt="MB Digital Tech" width={499} height={98} priority />
           </Link>
           <nav className="desktop-nav" aria-label="Menu principal">
-            <a href="#solucoes">Soluções</a>
-            <a href="#projetos">Projetos</a>
+            <a href="#solucoes">Serviços</a>
+            <a href="#equipe">Nossa equipe</a>
             <a href="#processo">Como funciona</a>
             <Link href="/orcamento">Orçamento</Link>
           </nav>
@@ -76,20 +86,20 @@ export default function Home() {
           <div className="hero-orb hero-orb-two" aria-hidden="true" />
           <div className="container hero-inner">
             <div className="hero-copy">
-              <div className="eyebrow"><span className="status-dot" aria-hidden="true" /> Tecnologia para pessoas e negócios</div>
-              <h1>Tecnologia para você <span>e para o seu negócio.</span></h1>
+              <div className="eyebrow"><span className="status-dot" aria-hidden="true" /> Sites, sistemas, design e automação</div>
+              <h1>Seu projeto digital, <span>feito para funcionar.</span></h1>
               <p>
-                Tem uma ideia, um problema para resolver ou um projeto para melhorar?
-                Criamos sites, aplicativos, sistemas, design e automações sob medida,
-                seja para uso pessoal, para sua profissão ou para sua empresa.
+                Criamos sites, aplicativos, sistemas, design e automações para você,
+                seu trabalho ou seu negócio. Conte sua ideia e converse diretamente
+                com a nossa equipe de profissionais de tecnologia.
               </p>
               <div className="hero-actions">
-                <WhatsAppLink source="hero" className="button button-primary">
-                  Conversar sobre meu projeto <span aria-hidden="true">↗</span>
+                <WhatsAppLink source="hero" className="button button-primary" message="Olá! Gostaria de um orçamento para um projeto digital. Podemos conversar?">
+                  Pedir orçamento no WhatsApp <span aria-hidden="true">↗</span>
                 </WhatsAppLink>
                 <a className="button button-secondary" href="#solucoes">Ver soluções</a>
               </div>
-              <p className="hero-helper">Atendemos pessoas físicas, profissionais autônomos e negócios de todos os tamanhos.</p>
+              <p className="hero-helper">Atendimento para pessoas físicas, profissionais e empresas. Converse sem compromisso.</p>
             </div>
 
             <div className="hero-visual" aria-label="Ilustração de uma ideia transformada em solução digital">
@@ -128,12 +138,12 @@ export default function Home() {
             <div className="section-heading split-heading">
               <div>
                 <span className="section-kicker">O que podemos fazer</span>
-                <h2>Você traz a necessidade. Nós encontramos o caminho.</h2>
+                <h2>Da sua ideia à solução digital que você precisa.</h2>
               </div>
               <p>
-                De uma página pessoal a uma plataforma completa. Reunimos especialistas
-                em desenvolvimento, front-end, back-end, design e experiência do usuário
-                conforme cada projeto precisa.
+                Você não precisa entender de programação para começar.
+                Explicamos as opções e reunimos os profissionais adequados
+                para cada etapa do projeto.
               </p>
             </div>
             <div className="services-grid">
@@ -142,6 +152,9 @@ export default function Home() {
                   <span className="service-number">{service.number}</span>
                   <h3>{service.title}</h3>
                   <p>{service.text}</p>
+                  <WhatsAppLink source="services" message={service.message} className="service-link" label={`Pedir orçamento para ${service.title}`}>
+                    Pedir orçamento <span aria-hidden="true">↗</span>
+                  </WhatsAppLink>
                 </article>
               ))}
             </div>
@@ -152,30 +165,58 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section showcase-section" id="projetos">
+        <section className="section possibilities-section" id="possibilidades">
           <div className="container">
             <div className="section-heading split-heading">
               <div>
-                <span className="section-kicker">Projetos próprios</span>
-                <h2>Tecnologia que já colocamos em prática.</h2>
+                <span className="section-kicker">O que podemos criar para você</span>
+                <h2>Tem um objetivo? A gente ajuda a tirar do papel.</h2>
               </div>
-              <p>Conheça alguns projetos de desenvolvimento e infraestrutura que demonstram o tipo de solução que construímos.</p>
+              <p>Algumas necessidades que podemos atender. Não precisa saber qual tecnologia usar, basta explicar o que você quer resolver.</p>
             </div>
-            <div className="home-cases">
-              {projects.slice(0, 2).map((project) => (
-                <article className="home-case" key={project.id}>
-                  <div className="home-case-top">
-                    <span>{project.category}</span>
-                    <small>{project.status}</small>
-                  </div>
-                  <h3>{project.name}</h3>
-                  <p>{project.summary}</p>
-                  <Link href={`/projetos#${project.id}`}>Conhecer o projeto <span aria-hidden="true">↗</span></Link>
-                </article>
-              ))}
+            <div className="possibilities-grid">
+              <article className="possibility-card">
+                <span className="possibility-label">PRESENÇA DIGITAL</span>
+                <h3>Quero apresentar meu trabalho na internet.</h3>
+                <p>Um site profissional, página de serviços, catálogo ou loja para facilitar o contato com seu público.</p>
+                <WhatsAppLink source="examples" message="Olá! Preciso de um site para apresentar meu trabalho. Podemos conversar?" className="inline-action">
+                  Conversar sobre meu site ↗
+                </WhatsAppLink>
+              </article>
+              <article className="possibility-card">
+                <span className="possibility-label">ROTINA MAIS SIMPLES</span>
+                <h3>Quero perder menos tempo com tarefas repetitivas.</h3>
+                <p>Integrações, automações e ferramentas para organizar informações e reduzir processos manuais.</p>
+                <WhatsAppLink source="examples" message="Olá! Gostaria de automatizar algumas tarefas do meu dia a dia." className="inline-action">
+                  Explorar uma automação ↗
+                </WhatsAppLink>
+              </article>
+              <article className="possibility-card">
+                <span className="possibility-label">PRODUTO SOB MEDIDA</span>
+                <h3>Tenho uma ideia de aplicativo ou sistema.</h3>
+                <p>Da primeira conversa ao desenvolvimento, estruturamos a solução conforme seu objetivo e orçamento.</p>
+                <WhatsAppLink source="examples" message="Olá! Tenho uma ideia de aplicativo ou sistema e gostaria de um orçamento." className="inline-action">
+                  Contar minha ideia ↗
+                </WhatsAppLink>
+              </article>
             </div>
-            <div className="section-link-row">
-              <Link href="/projetos" className="inline-action">Ver todos os projetos ↗</Link>
+          </div>
+        </section>
+
+        <section className="section team-section" id="equipe">
+          <div className="container team-panel">
+            <div className="team-copy">
+              <span className="section-kicker">Trabalho em equipe</span>
+              <h2>Profissionais diferentes. Um objetivo: resolver o seu problema.</h2>
+              <p>Na MB Digital Tech, seu projeto conta com profissionais da área de tecnologia. Combinamos competências de desenvolvimento, design e automação conforme cada necessidade.</p>
+              <WhatsAppLink source="team" className="inline-action" message="Olá! Gostaria de conhecer melhor os serviços da equipe MB Digital Tech.">
+                Falar com nossa equipe ↗
+              </WhatsAppLink>
+            </div>
+            <div className="team-skills" aria-label="Competências de atuação">
+              <div><span>01</span><strong>Desenvolvimento</strong><small>Sites, front-end, back-end e sistemas</small></div>
+              <div><span>02</span><strong>Design e experiência</strong><small>Identidade visual, interfaces e usabilidade</small></div>
+              <div><span>03</span><strong>Automação e integração</strong><small>Fluxos, APIs e inteligência artificial</small></div>
             </div>
           </div>
         </section>
@@ -185,7 +226,7 @@ export default function Home() {
             <div className="section-heading compact-heading">
               <span className="section-kicker">Simples, do começo ao fim</span>
               <h2>Como funciona?</h2>
-              <p className="heading-copy">Uma conversa é suficiente para começar. Não precisa chegar com tudo definido.</p>
+              <p className="heading-copy">Sem burocracia para explicar sua ideia. O projeto começa com uma conversa.</p>
             </div>
             <div className="process-grid">
               {steps.map(([number, title, description]) => (
@@ -204,10 +245,10 @@ export default function Home() {
             <div className="cta-grid" aria-hidden="true" />
             <div className="cta-content">
               <span className="section-kicker light">Seu projeto começa aqui</span>
-              <h2>Precisa de uma solução? Vamos conversar.</h2>
-              <p>Pode ser para você, sua profissão ou seu negócio. Conte o que imagina e ajudamos a definir os próximos passos.</p>
+              <h2>Seu próximo projeto pode começar com uma mensagem.</h2>
+              <p>Seja um site pessoal, uma loja ou um sistema para seu negócio, nossa equipe está pronta para ouvir sua ideia e discutir possibilidades.</p>
               <div className="cta-actions">
-                <WhatsAppLink source="footer" className="button button-light">Chamar no WhatsApp <span aria-hidden="true">↗</span></WhatsAppLink>
+                <WhatsAppLink source="footer" className="button button-light">Pedir orçamento pelo WhatsApp <span aria-hidden="true">↗</span></WhatsAppLink>
                 <Link href="/orcamento" className="button button-outline-light">Prefiro pedir orçamento pelo site</Link>
               </div>
             </div>
@@ -224,8 +265,8 @@ export default function Home() {
             <p>Soluções digitais para pessoas e negócios. Atendimento online em todo o Brasil.</p>
           </div>
           <nav className="footer-links" aria-label="Links do rodapé">
-            <a href="#solucoes">Soluções</a>
-            <Link href="/projetos">Projetos</Link>
+            <a href="#solucoes">Serviços</a>
+            <a href="#equipe">Equipe</a>
             <Link href="/orcamento">Orçamento</Link>
             <WhatsAppLink source="footer">WhatsApp: (21) 98577-3165</WhatsAppLink>
           </nav>

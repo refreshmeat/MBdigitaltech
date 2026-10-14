@@ -4,17 +4,35 @@ import "./navigation.css";
 import "./home-extra.css";
 import "./legal.css";
 import "./audit-polish.css";
+import "./conversion.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${siteUrl}/#organizacao`,
+  name: "MB Digital Tech",
+  url: siteUrl,
+  description: "Equipe de profissionais para criação de sites, aplicativos, sistemas, design e automações.",
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+55-21-98577-3165",
+    contactType: "sales",
+    areaServed: "BR",
+    availableLanguage: "Portuguese",
+  },
+  areaServed: { "@type": "Country", name: "Brasil" },
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "MB Digital Tech | Sites, Apps, Design e Automação",
+    default: "Criação de Sites, Aplicativos e Sistemas | MB Digital Tech",
     template: "%s | MB Digital Tech",
   },
   description:
-    "Criação de sites, aplicativos, design, sistemas e automações para pessoas, profissionais e empresas. Conte seu projeto e fale com a MB Digital Tech pelo WhatsApp.",
+    "Equipe de profissionais para criar sites, aplicativos, sistemas, design e automações para você ou seu negócio. Peça um orçamento pelo WhatsApp.",
   keywords: [
     "desenvolvimento de software",
     "sites para empresas",
@@ -38,17 +56,17 @@ export const metadata: Metadata = {
     type: "website",
     locale: "pt_BR",
     siteName: "MB Digital Tech",
-    title: "MB Digital Tech | Sites, Apps, Design e Automação",
+    title: "Criação de Sites, Aplicativos e Sistemas | MB Digital Tech",
     description:
-      "Sites, aplicativos, design e automações para você, sua profissão e seu negócio.",
+      "Sites, aplicativos, sistemas e automações com atendimento para pessoas e empresas. Fale com a nossa equipe.",
     images: [{ url: "/mb-digital-tech-social.png", width: 1200, height: 630, alt: "MB Digital Tech: soluções para pessoas e negócios" }],
   },
   twitter: {
     card: "summary_large_image",
     images: ["/mb-digital-tech-social.png"],
-    title: "MB Digital Tech | Sites, Apps, Design e Automação",
+    title: "Criação de Sites, Aplicativos e Sistemas | MB Digital Tech",
     description:
-      "Sites, aplicativos, design e automações para você, sua profissão e seu negócio.",
+      "Sites, aplicativos, sistemas e automações com atendimento para pessoas e empresas. Fale com a nossa equipe.",
   },
   robots: { index: true, follow: true },
 };
@@ -56,7 +74,13 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-BR">
-      <body>{children}</body>
+      <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema).replace(/</g, "\\u003c") }}
+        />
+        {children}
+      </body>
     </html>
   );
 }

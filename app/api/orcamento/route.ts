@@ -21,6 +21,8 @@ const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const projectLabels: Record<string, string> = {
   site: "Site / landing page",
+  app: "Aplicativo",
+  design: "Design ou UI/UX",
   system: "Sistema sob medida",
   saas: "Produto SaaS",
   automation: "Automação",
@@ -59,6 +61,8 @@ function clean(value: unknown, max = 5000) {
 }
 
 export async function POST(request: Request) {
+  const length = Number(request.headers.get("content-length") || "0");
+  if (length > 20000) return Response.json({ ok: false, error: "payload_too_large" }, { status: 413 });
   const payload = (await request.json().catch(() => null)) as QuotePayload | null;
   if (!payload) {
     return Response.json({ ok: false, error: "invalid_payload" }, { status: 400 });
@@ -78,12 +82,18 @@ export async function POST(request: Request) {
   const deadline = clean(payload.deadline, 80);
   const description = clean(payload.description, 5000);
 
+  const whatsappDigits = whatsapp.replace(/\D/g, "");
+  const validEmail = emailPattern.test(email);
+  const validWhatsapp = whatsappDigits.length >= 10 && whatsappDigits.length <= 13;
+
   if (
     name.length < 2 ||
-    !emailPattern.test(email) ||
+    (!validEmail && !validWhatsapp) ||
+    (email.length > 0 && !validEmail) ||
+    (whatsapp.length > 0 && !validWhatsapp) ||
     !projectLabels[projectType] ||
-    !stageLabels[stage] ||
-    description.length < 20
+    (stage.length > 0 && !stageLabels[stage]) ||
+    description.length < 8
   ) {
     return Response.json({ ok: false, error: "validation" }, { status: 400 });
   }
@@ -114,7 +124,7 @@ export async function POST(request: Request) {
   }
 
   const text = [
-    "NOVO BRIEFING — MB DIGITAL TECH",
+    "NOVO PEDIDO DE ORÇAMENTO — MB DIGITAL TECH",
     "",
     `Nome: ${name}`,
     `Empresa: ${company || "Não informada"}`,
@@ -139,7 +149,7 @@ export async function POST(request: Request) {
     body: JSON.stringify({
       from,
       to: [to],
-      reply_to: email,
+      ...(validEmail ? { reply_to: email } : {}),
       subject: `Novo projeto — ${projectLabels[projectType]}`,
       text,
     }),
