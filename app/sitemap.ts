@@ -3,7 +3,10 @@ import { servicePages } from "../lib/seo-services";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = (process.env.NEXT_PUBLIC_SITE_URL || "https://mbdigitaltech.com.br").replace(/\/$/, "");
-  const now = new Date();
+  // Só altere estas datas quando o conteúdo correspondente mudar.
+  // Evita declarar ao Google que todas as páginas mudaram a cada deploy.
+  const updatedHome = new Date("2026-10-15T00:13:00Z");
+  const updatedServices = new Date("2026-10-14T00:00:00Z");
   const routes = [
     { path: "", priority: 1, frequency: "weekly" as const },
     { path: "/servicos", priority: 0.95, frequency: "weekly" as const },
@@ -14,7 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
   return routes.map(({path,priority,frequency})=>({
     url: `${base}${path}`,
-    lastModified: now,
+    lastModified: path === "" ? updatedHome : updatedServices,
     changeFrequency: frequency,
     priority,
   }));
