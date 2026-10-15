@@ -1,3 +1,4 @@
+import { sendMbNotification } from "../../../lib/mail-notifications";
 type ReviewPayload = {
   name?: string;
   company?: string;
@@ -48,10 +49,6 @@ export async function POST(request: Request) {
   const to = process.env.CONTACT_EMAIL;
   const from = process.env.RESEND_FROM;
 
-  if (!apiKey || !to || !from) {
-    return Response.json({ ok: false, code: "not_configured" }, { status: 503 });
-  }
-
   const text = [
     "NOVA AVALIAÇÃO — MB DIGITAL TECH",
     "",
@@ -68,24 +65,31 @@ export async function POST(request: Request) {
     "AÇÃO: verificar se o contato corresponde a um projeto real antes de publicar.",
   ].join("\n");
 
-  const response = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from,
-      to: [to],
-      reply_to: email,
-      subject: `Avaliação ${rating}/5 — ${project}`,
-      text,
-    }),
-  });
-
-  if (!response.ok) {
-    return Response.json({ ok: false, error: "delivery" }, { status: 502 });
+  try {
+    await sendMbNotification({ subject: `Avaliação ${rating}/5 — ${project}`, text, replyTo: email });
+    return Response.json({ ok: true, delivery: "smtp-auth" });
+  } catch (error) {
+    console.error("Notificação SMTP não entregue:", error instanceof Error ? error.message : "erro");
   }
 
-  return Response.json({ ok: true });
+  if (apiKey && to && from) {
+    try {
+      const response = await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+        body: JSON.stringify({
+          from, to: [to],
+          reply_to: email,
+          subject: `Avaliação ${rating}/5 — ${project}`,
+          text,
+        }),
+        signal: AbortSignal.timeout(12000),
+      });
+      if (response.ok) return Response.json({ ok: true, delivery: "resend" });
+    } catch (error) {
+      console.error("Notificação Resend falhou:", error instanceof Error ? error.message : "erro");
+    }
+  }
+
+  return Response.json({ ok: false, error: "delivery" }, { status: 503 });
 }

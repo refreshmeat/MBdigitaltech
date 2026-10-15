@@ -1,30 +1,31 @@
-# MB Digital Tech | Auditoria de produção
+# Auditoria de lançamento — MB Digital Tech
 
-**Execução:** 14/10/2026 (horário de Brasília; servidor UTC 15/10).
-**Site:** https://mbdigitaltech.com.br
-**Ambiente:** Nexora / Hetzner, Next.js 16.4.1.
+Data dos testes: 14–15/10/2026. Site: https://mbdigitaltech.com.br
 
-## Testes aprovados
-- **61/61 verificações automatizadas:** telas de 320, 390, 768, 980, 1440 e 1920 px; menu, WhatsApp, terminal interativo (nome do projeto, três abas, execução), arquivos, navegação, formulários e respostas de APIs para entradas inválidas.
-- **Links:** 362 ocorrências de links nas páginas, 23 destinos internos distintos, nenhum link interno quebrado.
-- **SEO:** 20 URLs do sitemap, 20 títulos/canonicals válidos, descrições e H1, sem duplicações na auditoria técnica. Páginas privadas auxiliares com noindex. Redirecionamentos do domínio e HTTPS corretos.
-- **Favicon:** /favicon.ico (144x144) e /icon.png (128x128) retornando HTTP 200, referenciados no HTML, não bloqueados no robots.txt. Solicitação de indexação da home confirmada no Google Search Console. Aparição no resultado depende de novo processamento do Google.
-- **Formulário de orçamento:** validação client-side; API valida entradas; envio real HTTP 200; gravação confirmada em public.project_briefings e registro de QA removido.
-- **E-mail:** recebimento IMAP e envio SMTP autenticado para Gmail testados; TLS validado; serviço antirrelay testado.
-- **Segurança técnica:** Next.js 16.4.1 (atualizado por vulnerabilidade crítica na versão anterior), cabeçalhos HSTS, nosniff, Referrer-Policy, X-Frame-Options e Permissions-Policy. npm audit --omit=dev reporta zero vulnerabilidades nas dependências de produção.
-- **Infraestrutura:** 7 contêineres antigos de site e 16 tags obsoletas removidos, somente site atual e uma versão anterior parada para rollback. Disco 72% ocupado após limpeza. Backup local diário do correio instalado e primeira cópia verificada.
+## Estado operacional
+- Homepage, serviços, orçamento, HTTPS, favicon e navegação: aprovados.
+- E2E Playwright na versão pública após implantação: **61/61 verificações aprovadas**, em seis tamanhos de tela.
+- Sitemap: 20 URLs válidas; títulos, descriptions, canonicals, headings e páginas acessíveis.
+- Links: 23 URLs internas diferentes testadas sem erros; 362 ocorrências de links verificadas.
+- Next.js 16.4.1: build e lint passaram; dependências de produção com **zero vulnerabilidades** no `npm audit --omit=dev`.
+- Cabeçalhos de segurança HTTP: HSTS, nosniff, Referrer-Policy, X-Frame-Options e Permissions-Policy.
+- WhatsApp: links e número verificados em todos os tamanhos de tela.
+- Formulário de orçamento: validação, persistência em PostgreSQL, emissão de aviso SMTP autenticado.
+- Formulário de avaliação: validação e notificação SMTP autenticada.
+- Ambos os envios retornaram `HTTP 200` e `delivery=smtp-auth`, e foram confirmados na pasta **Caixa de Entrada**, não no spam, por IMAP.
+- Registros fictícios de orçamentos da QA foram removidos do banco após teste.
+- Servidor de e-mail: SMTP, IMAP, STARTTLS e envio externo funcionando, antivazamento de relay aberto verificado.
+- Backup diário do correio no servidor: systemd timer ativo, arquivo validado.
+- Cópias fora da VPS no Windows: arquivos do correio e tabela de orçamentos criptografados com DPAPI; transferência e leitura de verificação realizadas; tarefa Windows executa no logon e diariamente, último resultado **0**.
+- O site permanece hospedado no Nexora mesmo com o PC desligado; a cópia externa sincroniza apenas quando o computador está conectado.
 
-## Pendências que impedem declarar 100% operacional
-1. **Avisos de orçamento (alta prioridade):** /api/orcamento salva no PostgreSQL, mas retorna delivery=database; não envia alerta automático à caixa de contato.
-2. **Avaliações:** submissão válida em /api/avaliacoes retorna HTTP 503 (not_configured); fluxo de notificação externo indisponível.
-3. **Backup externo (recuperação de desastre):** cópia diária local existe, mas ainda não há recuperação independente da VPS confirmada.
-4. **DNS DMARC:** política p=none permanece de monitoramento; avaliar endurecimento depois de estabilizar as origens de envio.
-5. **Dependências de desenvolvimento:** npm audit geral indica cinco avisos altos transitivos no ecossistema de eslint-config-next; não fazem parte das dependências de produção. Não aplicar downgrade sugerido automaticamente.
+## Pendências que exigem ação externa
+- **Foto de remetente na caixa de entrada:** para exibição oficial em Gmail de forma consistente, a marca precisa de BIMI e certificado VMC ou CMC emitido por uma certificadora. Sem certificado, não é garantido. Não foi comprado nem configurado um certificado.
+- **DMARC:** continua `v=DMARC1; p=none`. A sessão do Registro.br expirou e exige novo login para alterar DNS. Migrar gradualmente após conferir todas as origens válidas de envio, evitando rejeitar mensagens legítimas.
+- **Resend:** existe uma chave antiga que já foi exibida em conversa anterior. Revogação exige confirmação explícita do responsável pelo serviço; não revogar sem substituir as credenciais nas rotas SMTP e confirmar envio.
+- **Recuperação de desastres extrema:** o backup externo atual é um espelho no PC, não uma cópia continuamente sincronizada na nuvem. Uma cópia adicional em armazenamento cloud independente daria resiliência ainda maior.
 
-## Experimento rejeitado
-Foi testado um fallback SMTP sem credenciais para notificações locais. Tanto no PC quanto no candidato dentro do Nexora, as mensagens foram entregues à pasta **Junk Mail** por falharem autenticações SPF/DMARC. O candidato **não foi colocado em produção**; contêiner e imagem foram excluídos e as alterações descartadas. O site atual mantém o caminho já testado de gravação em banco, aguardando envio autenticado configurado corretamente.
-
-## Política de publicação
-Nenhuma das pendências deve ser anunciada como resolvida sem teste real de ponta a ponta e recebimento na Caixa de Entrada. O favicon foi entregue corretamente; a decisão de exibição no Google não depende do site.
-
-*Relatório técnico gerado durante a auditoria via JARVIS.*
+## Notas
+- A logo do site está servida corretamente como favicon. O Google recebeu a solicitação de novo rastreamento; a exibição do resultado depende do índice.
+- Não há logo embutida nos corpos dos e-mails: o pedido é pela imagem do remetente na caixa de entrada.
+- O projeto local e sua branch foram preservados. Todos os dados de produção continuam no Nexora isolado da aplicação.

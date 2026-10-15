@@ -1,3 +1,4 @@
+import { sendMbNotification } from "../../../lib/mail-notifications";
 import { Pool } from "pg";
 
 const leadPool = process.env.DATABASE_URL
@@ -117,12 +118,6 @@ export async function POST(request: Request) {
   const to = process.env.CONTACT_EMAIL;
   const from = process.env.RESEND_FROM;
 
-  if (!apiKey || !to || !from) {
-    return saved
-      ? Response.json({ ok: true, delivery: "database" })
-      : Response.json({ ok: false, code: "not_configured" }, { status: 503 });
-  }
-
   const text = [
     "NOVO PEDIDO DE ORÇAMENTO — MB DIGITAL TECH",
     "",
@@ -140,26 +135,33 @@ export async function POST(request: Request) {
     description,
   ].join("\n");
 
-  const response = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from,
-      to: [to],
-      ...(validEmail ? { reply_to: email } : {}),
-      subject: `Novo projeto — ${projectLabels[projectType]}`,
-      text,
-    }),
-  });
-
-  if (!response.ok) {
-    return saved
-      ? Response.json({ ok: true, delivery: "database" })
-      : Response.json({ ok: false, error: "delivery" }, { status: 502 });
+  try {
+    await sendMbNotification({ subject: `Novo projeto — ${projectLabels[projectType]}`, text, ...(validEmail ? { replyTo: email } : {}) });
+    return Response.json({ ok: true, delivery: "smtp-auth" });
+  } catch (error) {
+    console.error("Notificação SMTP não entregue:", error instanceof Error ? error.message : "erro");
   }
 
-  return Response.json({ ok: true });
+  if (apiKey && to && from) {
+    try {
+      const response = await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+        body: JSON.stringify({
+          from, to: [to],
+          ...(validEmail ? { reply_to: email } : {}),
+          subject: `Novo projeto — ${projectLabels[projectType]}`,
+          text,
+        }),
+        signal: AbortSignal.timeout(12000),
+      });
+      if (response.ok) return Response.json({ ok: true, delivery: "resend" });
+    } catch (error) {
+      console.error("Notificação Resend falhou:", error instanceof Error ? error.message : "erro");
+    }
+  }
+
+  return saved
+    ? Response.json({ ok: true, delivery: "database" })
+    : Response.json({ ok: false, error: "delivery" }, { status: 502 });
 }
