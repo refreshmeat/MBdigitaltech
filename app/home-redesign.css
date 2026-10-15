@@ -186,6 +186,11 @@
   .mb-service-tile { min-height: 187px; }
   .mb-approach-inner { gap: 40px; }
 }
+/* Header spacing: tablet and desktop mode on mobile browsers */
+@media (min-width: 641px) and (max-width: 980px) {
+  .site-header .mb-header-contact { margin-left: auto; }
+  .site-header .mobile-menu { margin-left: 0; }
+}
 @media (max-width: 700px) {
   .mb-hero-inner { padding: 68px 0 64px; }
   .mb-hero h1 { font-size: clamp(40px, 9vw, 54px); letter-spacing: -.047em; }
