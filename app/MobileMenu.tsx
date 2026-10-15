@@ -14,9 +14,8 @@ export default function MobileMenu() {
     <details className="mobile-menu" ref={menu}>
       <summary>Menu</summary>
       <nav className="mobile-menu-panel" aria-label="Navegação no celular">
-        <Link href="/servicos" onClick={closeMenu}>Todos os serviços <span aria-hidden="true">↗</span></Link>
-        <a href="#equipe" onClick={closeMenu}>Nossa equipe <span aria-hidden="true">↗</span></a>
-        <a href="#processo" onClick={closeMenu}>Como funciona <span aria-hidden="true">↗</span></a>
+        <Link href="/#servicos" onClick={closeMenu}>Serviços <span aria-hidden="true">↗</span></Link>
+        <Link href="/#como-trabalhamos" onClick={closeMenu}>Como trabalhamos <span aria-hidden="true">↗</span></Link>
         <Link href="/orcamento" onClick={closeMenu}>Pedir orçamento <span aria-hidden="true">↗</span></Link>
         <WhatsAppLink source="mobile" className="mobile-menu-primary">
           Conversar no WhatsApp <span aria-hidden="true">↗</span>
