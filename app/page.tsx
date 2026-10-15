@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import WhatsAppLink from "./WhatsAppLink";
 import MobileMenu from "./MobileMenu";
+import TechPlayground from "./TechPlayground";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
@@ -64,7 +65,8 @@ export default function Home() {
 
       <main id="conteudo">
         <section className="mb-hero" aria-labelledby="mb-hero-title">
-          <div className="container mb-hero-inner">
+          <div className="container mb-hero-inner mb-hero-with-lab">
+            <div className="mb-hero-copy">
             <p className="mb-hero-kicker">MB DIGITAL TECH · SOLUÇÕES PARA O SEU NEGÓCIO</p>
             <h1 id="mb-hero-title">Sua ideia merece <span>sair do papel.</span></h1>
             <p className="mb-hero-description">Criação de sites, aplicativos, sistemas e automações para quem quer fazer acontecer. Você conta o que precisa, a gente encontra o melhor caminho.</p>
@@ -74,6 +76,8 @@ export default function Home() {
               </WhatsAppLink>
               <a className="mb-btn mb-btn-secondary" href="#servicos">Conhecer os serviços <span aria-hidden="true">↓</span></a>
             </div>
+            </div>
+            <TechPlayground />
           </div>
         </section>
 

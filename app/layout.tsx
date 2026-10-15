@@ -6,6 +6,7 @@ import "./legal.css";
 import "./audit-polish.css";
 import "./conversion.css";
 import "./home-redesign.css";
+import "./tech-playground.css";
 import "./servicos/servicos.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
