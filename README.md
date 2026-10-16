@@ -68,3 +68,17 @@ A logo oficial aprovada está em `public/mb-digital-tech-logo.png` e deve ser pr
 - Telefone comercial: (21) 98577-3165 (`wa.me/5521985773165`).
 - Documento de auditoria, resultados e pendências: `SITE_AUDIT_REPORT_2026-10-14.md`.
 - Atenção ao deploy: o Caddyfile é montado como arquivo somente leitura. Depois de substituir o arquivo no host, é necessário recriar o serviço `gateway` do Compose para remontar o novo inode; validar o Caddyfile e preservar as rotas dos demais projetos.
+
+
+## Verificações de segurança e lançamento
+
+- `npm test`: regressão do catálogo e limites de entrada dos formulários.
+- `npm run lint` / `npx tsc --noEmit` / `npm run build`: validações de código.
+- `npm run test:security`: smoke HTTP das APIs e CSP **em uma instância local de produção**. Inicie `npm run start -- -p 3137` antes. A URL pode ser alterada por `MB_SECURITY_URL`; não execute testes de taxa em produção.
+- `MB_PERF_URL=http://127.0.0.1:3137 npm run test:perf`: latência de staging com concorrência controlada; números não representam carga pública em escala.
+
+Os endpoints públicos aceitam até 20 KB de JSON (CTA: 1 KB) e limitam envios por IP e rota em janela de 15 minutos. Esse mecanismo é **em memória por instância**. Se a infraestrutura for replicada, adicione um rate limiter compartilhado ou na borda antes de escalar. O Caddy é considerado o proxy confiável para `X-Forwarded-For` e precisa descartar esse cabeçalho quando enviado por clientes não confiáveis.
+
+O CSP aplica controles básicos, mas a necessidade atual de `script-src 'unsafe-inline'` para a renderização do Next.js é uma proteção parcial. Nonces/hashes podem ser implementados numa revisão posterior. Nenhum software deve ser declarado imune a ataques.
+
+Última auditoria técnica: `AUDITORIA_SEGURANCA_SEO_2026-10-16.md`.

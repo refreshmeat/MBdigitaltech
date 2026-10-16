@@ -1,4 +1,5 @@
 import { sendMbNotification } from "../../../lib/mail-notifications";
+import { boundedJson, publicRateLimit } from "../../../lib/public-api-guard";
 import { Pool } from "pg";
 
 const leadPool = process.env.DATABASE_URL
@@ -62,12 +63,11 @@ function clean(value: unknown, max = 5000) {
 }
 
 export async function POST(request: Request) {
-  const length = Number(request.headers.get("content-length") || "0");
-  if (length > 20000) return Response.json({ ok: false, error: "payload_too_large" }, { status: 413 });
-  const payload = (await request.json().catch(() => null)) as QuotePayload | null;
-  if (!payload) {
-    return Response.json({ ok: false, error: "invalid_payload" }, { status: 400 });
-  }
+  const throttled = publicRateLimit(request, "orcamento", 12);
+  if (throttled) return throttled;
+  const parsed = await boundedJson(request);
+  if (parsed instanceof Response) return parsed;
+  const payload = parsed as QuotePayload;
 
   if (clean(payload.website, 200)) {
     return Response.json({ ok: true });

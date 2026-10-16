@@ -1,4 +1,5 @@
 import { sendMbNotification } from "../../../lib/mail-notifications";
+import { boundedJson, publicRateLimit } from "../../../lib/public-api-guard";
 type ReviewPayload = {
   name?: string;
   company?: string;
@@ -17,10 +18,11 @@ function clean(value: unknown, max = 5000) {
 }
 
 export async function POST(request: Request) {
-  const payload = (await request.json().catch(() => null)) as ReviewPayload | null;
-  if (!payload) {
-    return Response.json({ ok: false, error: "invalid_payload" }, { status: 400 });
-  }
+  const throttled = publicRateLimit(request, "avaliacoes", 12);
+  if (throttled) return throttled;
+  const parsed = await boundedJson(request);
+  if (parsed instanceof Response) return parsed;
+  const payload = parsed as ReviewPayload;
 
   if (clean(payload.website, 200)) {
     return Response.json({ ok: true });
@@ -38,6 +40,7 @@ export async function POST(request: Request) {
     !emailPattern.test(email) ||
     project.length < 2 ||
     review.length < 20 ||
+    !Number.isInteger(rating) ||
     rating < 1 ||
     rating > 5 ||
     payload.consent !== true

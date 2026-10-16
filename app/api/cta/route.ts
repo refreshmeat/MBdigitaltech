@@ -1,4 +1,5 @@
 import { Pool } from "pg";
+import { boundedJson, publicRateLimit } from "../../../lib/public-api-guard";
 
 const allowedSources = new Set([
   "header", "hero", "services", "examples", "team", "footer", "floating", "mobile", "quote",
@@ -9,8 +10,13 @@ const pool = process.env.DATABASE_URL
   : null;
 
 export async function POST(request: Request) {
-  const data = await request.json().catch(() => null);
-  const source = typeof data?.source === "string" ? data.source : "";
+  const throttled = publicRateLimit(request, "cta", 120);
+  if (throttled) return throttled;
+  const parsed = await boundedJson(request, 1024);
+  if (parsed instanceof Response) return parsed;
+  const source = typeof (parsed as { source?: unknown }).source === "string"
+    ? (parsed as { source: string }).source
+    : "";
   if (!allowedSources.has(source)) {
     return Response.json({ ok: false }, { status: 400 });
   }
