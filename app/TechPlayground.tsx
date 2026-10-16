@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 
 type DemoKind = "site" | "app" | "automacao";
 
@@ -48,7 +49,7 @@ function SitePreview({ name }: { name: string }) {
         <div>
           <span className="mb-lab-site-eyebrow">SEU NEGÓCIO NA INTERNET</span>
           <strong>Sua presença digital, do seu jeito.</strong>
-          <span className="mb-lab-site-btn">Conhecer serviços ↗</span>
+          <Link className="mb-lab-site-btn" href="/servicos/criacao-de-sites">Conhecer serviços ↗</Link>
         </div>
         <div className="mb-lab-site-graphic" aria-hidden="true"><span/><span/><span/></div>
       </div>

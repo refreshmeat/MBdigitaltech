@@ -139,7 +139,7 @@
 .mb-lab-site-body > div:first-child { display: grid; gap: 8px; width: 66%; }
 .mb-lab-site-eyebrow { font-size: 8px; letter-spacing: .08em; font-weight: 800; color: #2d8bbe; }
 .mb-lab-site-body strong { font-size: 16px; line-height: 1.18; letter-spacing: -.03em; }
-.mb-lab-site-btn { padding: 7px 10px; width: fit-content; border-radius: 6px; background: #116cae; color: #fff; font-size: 9px; font-weight: 750; }
+.mb-lab-site-btn { display: inline-flex; align-items: center; padding: 7px 10px; width: fit-content; border-radius: 6px; background: #116cae; color: #fff; font-size: 9px; font-weight: 750; }
 .mb-lab-site-graphic { width: 29%; height: 76px; position: relative; overflow: hidden; border-radius: 14px; background: linear-gradient(135deg,#b4e4f4,#5c94d9); }
 .mb-lab-site-graphic span { position: absolute; width: 63px; height: 63px; border: 2px solid rgba(255,255,255,.68); border-radius: 50%; }
 .mb-lab-site-graphic span:first-child { top: -27px; right: -23px; }
@@ -191,7 +191,7 @@
  .mb-lab-tabs { padding: 11px 12px 2px; }
  .mb-lab-tab { min-height: 33px; padding: 6px 10px; font-size: 10px !important; }
  .mb-lab-editor { padding: 8px 12px 0; }
- .mb-lab-code { font-size: 10px; padding-top: 10px; padding-bottom: 10px; min-height: 135px; }
+ .mb-lab-code { font-size: 10.5px; padding-top: 10px; padding-bottom: 10px; min-height: 135px; }
  .mb-lab-ln { width: 27px; margin-right: 8px; padding-right: 7px; }
  .mb-lab-control-bar { padding: 10px 12px 12px; }
  .mb-lab-output { padding: 10px 12px 11px; }
@@ -200,7 +200,7 @@
 @media(max-width:390px){
  .mb-lab-top { font-size: 8px; }
  .mb-lab-live { font-size: 8px; }
- .mb-lab-code { font-size: 9px; }
+ .mb-lab-code { font-size: 10px; }
  .mb-lab-run { min-width: 95px; padding: 0 10px; }
  .mb-lab-app-note { font-size: 10px; }
  .mb-lab-site-nav { gap: 7px; }

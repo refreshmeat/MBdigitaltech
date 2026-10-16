@@ -122,7 +122,7 @@ O fluxo valida instalação, lint e build. Os últimos ciclos relevantes passara
 
 ## 8. Configuração de produção
 
-Arquivo `.env.example` define:
+Arquivo `config/env.template` define:
 
 - `NEXT_PUBLIC_SITE_URL`;
 - `RESEND_API_KEY`;

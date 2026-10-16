@@ -106,6 +106,8 @@ body { overflow-x: clip; }
   .section { padding: 59px 0; }
 }
 @media (max-width: 640px) {
+  /* WhatsApp fixo no cabeçalho; evitar sobrepor o botão Executar e formulários. */
+  .floating-whatsapp { display: none; }
   .header-inner { min-height: 62px; gap: 8px; }
   .brand-logo img { width: 167px; height:auto; }
   .header-whatsapp { margin-left:auto; width: 42px; height: 42px; min-height:42px; padding: 0; border-radius:12px; font-size: 21px; }

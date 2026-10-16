@@ -23,14 +23,15 @@ A aplicação abre em `http://localhost:3000`.
 
 ## Variáveis de ambiente
 
-Copie `.env.example` para `.env.local` e preencha:
+Copie `config/env.template` para `.env.local` e preencha, sem versionar senhas:
 
 - `NEXT_PUBLIC_SITE_URL`
 - `RESEND_API_KEY`
 - `RESEND_FROM`
 - `CONTACT_EMAIL`
+- `MB_MAIL_PASSWORD` (senha da caixa para avisos SMTP autenticados)
 
-Sem essas variáveis, o site continua carregando, mas os endpoints de orçamento e avaliações retornam que o envio não está configurado.
+O servidor recebe orçamentos no banco e envia os avisos comerciais pela caixa autenticada da MB. O Resend é opcional como contingência, mas os alertas exigem um transporte de e-mail funcional.
 
 ## Rotas principais
 
